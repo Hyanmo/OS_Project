@@ -1,19 +1,18 @@
 CC = gcc
 CFLAGS = -Wall -g
-SOURCES = main.c file_manager.c
-OBJECTS = $(SOURCES:.c=.o)
-EXECUTABLE = file_manager
+TARGET = file_manager
+OBJ = file_manager.o main.o
 
-all: $(EXECUTABLE)
+all: $(TARGET)
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(EXECUTABLE)
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $(TARGET)
 
-.c.o:
-	$(CC) $(CFLAGS) -c $<
+file_manager.o: file_manager.c file_manager.h
+	$(CC) $(CFLAGS) -c file_manager.c
+
+main.o: main.c file_manager.h
+	$(CC) $(CFLAGS) -c main.c
 
 clean:
-	rm -f $(OBJECTS) $(EXECUTABLE)
-
-install:
-	cp $(EXECUTABLE) /usr/local/bin/
+	rm -f $(OBJ) $(TARGET)

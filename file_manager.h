@@ -1,30 +1,25 @@
 #ifndef FILE_MANAGER_H
 #define FILE_MANAGER_H
 
-// Structure représentant un fichier
-typedef struct {
-    char name[256];  // Nom du fichier
-    int size;        // Taille du fichier
-    int permissions; // Permissions du fichier (lecture, écriture, exécution)
-    int start_block; // Bloc de départ du fichier dans le système
-} File;
+// 创建文件
+int create_file(const char *filename, int permissions, int size);
 
-// Création d'un fichier
-int create_file(const char *name, int permissions, int size);
-
-// Suppression d'un fichier
-int delete_file(const char *name);
-
-// Copie d'un fichier
-int copy_file(const char *src_name, const char *dst_name);
-
-// Déplacement d'un fichier
-int move_file(const char *src_name, const char *dst_name);
-
-// Modification des permissions
-int set_permissions(const char *name, int permissions);
-
-// Liste des fichiers
+// 列出文件
 void list_files();
 
-#endif
+// 复制文件
+int copy_file(const char *source, const char *destination);
+
+// 移动文件
+int move_file(const char *source, const char *destination);
+
+// 删除文件
+int delete_file(const char *filename);
+
+// 修改文件权限
+int set_permissions(const char *filename, int permissions);
+
+// 处理命令
+void handle_command(int argc, char *argv[]);
+
+#endif // FILE_MANAGER_H
