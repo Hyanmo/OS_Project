@@ -8,15 +8,16 @@
 
 ## Exemple d'utilisation
 
-- **Créer un fichier** : `./file_manager create fichier1.txt 755 1024`
-- **Supprimer un fichier** : `./file_manager delete fichier1.txt`
-- **Copier un fichier** : `./file_manager copy fichier1.txt fichier3.txt`
-- **Déplacer un fichier** : `./file_manager move fichier2.txt fichier4.txt`
-- **Modifier les permissions** : `./file_manager chmod 777 fichier1.txt`
+- **Excuter le programme : `./main`
+- **Créer un fichier** : `create fichier1.txt 755 1024`
+- **Supprimer un fichier** : `delete fichier1.txt`
+- **Copier un fichier** : `copy fichier1.txt fichier3.txt`
+- **Déplacer un fichier** : `move fichier2.txt fichier4.txt`
+- **Modifier les permissions** : `chmod 777 fichier1.txt`
 
 ## Liste des fichiers
 
-Vous pouvez lister tous les fichiers présents dans le système avec la commande `./file_manager list`.
+Vous pouvez lister tous les fichiers présents dans le système avec la commande `list`.
 
 ## Permissions
 
