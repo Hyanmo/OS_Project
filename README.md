@@ -8,7 +8,7 @@
 
 ## Exemple d'utilisation
 
-- **Excuter le programme : `./main`
+- **Excuter le programme** : `./main`
 - **Créer un fichier** : `create fichier1.txt 755 1024`
 - **Supprimer un fichier** : `delete fichier1.txt`
 - **Copier un fichier** : `copy fichier1.txt fichier3.txt`
