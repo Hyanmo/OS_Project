@@ -3,14 +3,6 @@
 #include <stdlib.h>
 #include "file_manager.h"
 
-// 模拟文件系统
-#define MAX_FILES 100
-typedef struct {
-    char name[50];
-    int permissions;
-    int size;
-} File;
-
 File file_system[MAX_FILES];
 int file_count = 0;
 
@@ -97,43 +89,50 @@ int set_permissions(const char *filename, int permissions) {
 }
 
 // 处理命令
-void handle_command(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("Usage: ./file_manager <command> [arguments]\n");
-        return;
-    }
+void handle_command() {
+    char input[100];
 
-    const char *command = argv[1];
+    while (1) {
+        printf("\n请输入命令 (create/list/copy/move/delete/chmod/exit): ");
+        fgets(input, sizeof(input), stdin);
 
-    if (strcmp(command, "create") == 0 && argc == 5) {
-        // 创建文件
-        const char *filename = argv[2];
-        int permissions = atoi(argv[3]);
-        int size = atoi(argv[4]);
-        create_file(filename, permissions, size);
-    } else if (strcmp(command, "list") == 0) {
-        // 列出文件
-        list_files();
-    } else if (strcmp(command, "copy") == 0 && argc == 4) {
-        // 复制文件
-        const char *source = argv[2];
-        const char *destination = argv[3];
-        copy_file(source, destination);
-    } else if (strcmp(command, "move") == 0 && argc == 4) {
-        // 移动文件
-        const char *source = argv[2];
-        const char *destination = argv[3];
-        move_file(source, destination);
-    } else if (strcmp(command, "delete") == 0 && argc == 3) {
-        // 删除文件
-        const char *filename = argv[2];
-        delete_file(filename);
-    } else if (strcmp(command, "chmod") == 0 && argc == 4) {
-        // 修改文件权限
-        const char *filename = argv[2];
-        int permissions = atoi(argv[3]);
-        set_permissions(filename, permissions);
-    } else {
-        printf("Commande non reconnue ou arguments invalides.\n");
+        // 去掉换行符
+        input[strcspn(input, "\n")] = '\0';
+
+        // 退出命令
+        if (strcmp(input, "exit") == 0) {
+            printf("sorti,bey!\n");
+            break;
+        }
+
+        // 按空格拆分输入
+        char *argv[10];
+        int argc = 0;
+        char *token = strtok(input, " ");
+        while (token != NULL && argc < 10) {
+            argv[argc++] = token;
+            token = strtok(NULL, " ");
+        }
+
+        // 解析命令
+        if (argc == 0) continue;  // 如果没有输入内容，继续等待输入
+
+        const char *command = argv[0];
+
+        if (strcmp(command, "create") == 0 && argc == 4) {
+            create_file(argv[1], atoi(argv[2]), atoi(argv[3]));
+        } else if (strcmp(command, "list") == 0) {
+            list_files();
+        } else if (strcmp(command, "copy") == 0 && argc == 3) {
+            copy_file(argv[1], argv[2]);
+        } else if (strcmp(command, "move") == 0 && argc == 3) {
+            move_file(argv[1], argv[2]);
+        } else if (strcmp(command, "delete") == 0 && argc == 2) {
+            delete_file(argv[1]);
+        } else if (strcmp(command, "chmod") == 0 && argc == 3) {
+            set_permissions(argv[1], atoi(argv[2]));
+        } else {
+            printf("Commande non reconnue ou arguments invalides.\n");
+        }
     }
 }
