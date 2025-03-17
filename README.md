@@ -1,30 +1,63 @@
-# Gestionnaire de fichiers - Guide d'utilisation
+# Guide d'utilisation du Gestionnaire de Fichiers
 
-## Installation
+## Compilation et Exécution
 
-1. Clonez le dépôt du projet.
-2. Utilisez la commande `make` pour compiler le programme.
-3. Utilisez `make install` pour installer le programme dans `/usr/local/bin/`.
+1. Compilez le programme avec la commande `make`
+2. Exécutez le programme avec `./file_manager`
 
-## Exemple d'utilisation
+## Commandes Disponibles
 
-- **Créer un fichier** : `./file_manager create fichier1.txt 755 1024`
-- **Supprimer un fichier** : `./file_manager delete fichier1.txt`
-- **Copier un fichier** : `./file_manager copy fichier1.txt fichier3.txt`
-- **Déplacer un fichier** : `./file_manager move fichier2.txt fichier4.txt`
-- **Modifier les permissions** : `./file_manager chmod 777 fichier1.txt`
+1. **Créer un fichier**
+   - Commande : `create nom_fichier permissions taille`
+   - Exemple : `create test.txt 644 1024`
 
-## Liste des fichiers
+2. **Créer un répertoire**
+   - Commande : `mkdir nom_repertoire permissions`
+   - Exemple : `mkdir documents 755`
 
-Vous pouvez lister tous les fichiers présents dans le système avec la commande `./file_manager list`.
+3. **Lister les fichiers**
+   - Commande : `ls [chemin]`
+   - Exemple : `ls` `ls /documents`
 
-## Permissions
+4. **Changer de répertoire**
+   - Commande : `cd chemin`
+   - Exemples :
+     - `cd documents` (accéder au sous-répertoire)
+     - `cd ..` (retourner au répertoire parent)
+     - `cd /` (retourner à la racine)
 
-Les permissions suivent le format classique UNIX :
+5. **Copier un fichier**
+   - Commande : `copy source destination`
+   - Exemple : `copy test.txt copie.txt`
 
-- 7 : Lecture, écriture et exécution (rwx)
-- 6 : Lecture et écriture (rw-)
-- 5 : Lecture et exécution (r-x)
-- 4 : Lecture seule (r--)
+6. **Déplacer un fichier**
+   - Commande : `move source destination`
+   - Exemple : `move test.txt documents/test.txt`
 
-Par exemple, `chmod 755 fichier1.txt` donne à `fichier1.txt` des permissions `rwxr-xr-x`.
+7. **Supprimer un fichier**
+   - Commande : `rm [-r] chemin_fichier`
+   - Exemple : `rm test.txt` `rm -r documents`
+
+8. **Modifier les permissions**
+   - Commande : `chmod nom_fichier permissions`
+   - Exemple : `chmod test.txt 644`
+
+9. **Quitter le programme**
+   - Commande : `exit`
+
+## Système de Permissions
+
+Les permissions suivent le format UNIX standard avec trois chiffres :
+- 7 (rwx) : Lecture, écriture et exécution
+- 6 (rw-) : Lecture et écriture
+- 5 (r-x) : Lecture et exécution
+- 4 (r--) : Lecture seule
+- 3 (-wx) : Écriture et exécution
+- 2 (-w-) : Écriture seule
+- 1 (--x) : Exécution seule
+- 0 (---) : Aucune permission
+
+Permissions courantes :
+- 755 : Propriétaire (rwx), Autres (r-x)
+- 644 : Propriétaire (rw-), Autres (r--)
+- 777 : Tous les droits pour tous

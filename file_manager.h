@@ -1,36 +1,41 @@
 #ifndef FILE_MANAGER_H
 #define FILE_MANAGER_H
 
-// 模拟文件系统
+// Simulation du système de fichiers
 #define MAX_FILES 100
-typedef struct {
-    char name[50];
+#define MAX_PATH_LENGTH 256
+#define MAX_NAME_LENGTH 50
+
+typedef enum {
+    FILE_TYPE,
+    DIRECTORY_TYPE
+} FileType;
+
+typedef struct FileNode {
+    char name[MAX_NAME_LENGTH];
+    FileType type;
     int permissions;
     int size;
-} File;
+    struct FileNode* parent;
+    struct FileNode* children[MAX_FILES];
+    int child_count;
+} FileNode;
 
-extern File file_system[MAX_FILES];  // 让其他文件可以访问 file_system
-extern int file_count;               // 让其他文件可以访问 file_cou
+extern FileNode* root_directory;  // Répertoire racine
+extern FileNode* current_directory;  // Répertoire courant
 
-// 创建文件
-int create_file(const char *filename, int permissions, int size);
+// Fonctions d'opération du système de fichiers
+int create_file(const char* path, int permissions, int size);
+int create_directory(const char* path, int permissions);
+void list_files(const char* path);
+int copy_file(const char* source, const char* destination);
+int move_file(const char* source, const char* destination);
+int delete_file(const char* path);
+int set_permissions(const char* path, int permissions);
+int change_directory(const char* path);
+FileNode* get_file_by_path(const char* path);
 
-// 列出文件
-void list_files();
-
-// 复制文件
-int copy_file(const char *source, const char *destination);
-
-// 移动文件
-int move_file(const char *source, const char *destination);
-
-// 删除文件
-int delete_file(const char *filename);
-
-// 修改文件权限
-int set_permissions(const char *filename, int permissions);
-
-// 处理命令
+// Fonction pour gérer les commandes de l'utilisateur
 void handle_command();
 
 #endif // FILE_MANAGER_H
