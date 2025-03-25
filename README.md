@@ -42,8 +42,33 @@
    - Commande : `chmod nom_fichier permissions`
    - Exemple : `chmod test.txt 644`
 
-9. **Quitter le programme**
-   - Commande : `exit`
+9. **Ouvrir un fichier**
+   - Commande : `open nom_fichier mode`
+   - Mode : "r" (lecture) ou "w" (écriture)
+   - Exemple : `open test.txt r`
+
+10. **Fermer un fichier**
+    - Commande : `close nom_fichier`
+    - Exemple : `close test.txt`
+
+11. **Lire un fichier**
+    - Commande : `read nom_fichier`
+    - Exemple : `read test.txt`
+
+12. **Écrire dans un fichier**
+    - Commande : `write nom_fichier contenu`
+    - Exemple : `write test.txt Hello,World!`
+
+13. **Créer un lien dur**
+    - Commande : `ln source nom_lien`
+    - Exemple : `ln test.txt lien_test`
+
+14. **Créer un lien symbolique**
+    - Commande : `ln -s source nom_lien`
+    - Exemple : `ln -s test.txt lien_symb_test`
+
+15. **Quitter le programme**
+    - Commande : `exit`
 
 ## Système de Permissions
 

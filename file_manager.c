@@ -1,13 +1,32 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+// fcntl.h - Pour les opérations sur les fichiers (open, O_RDWR)
+#include <fcntl.h>     
+// unistd.h - Pour les opérations système (read, write, close)
+#include <unistd.h>
+// sys/stat.h - Pour les permissions des fichiers
+#include <sys/stat.h>
+// ctype.h - Pour le traitement des caractères (isspace)
+#include <ctype.h>
+// file_manager.h - Définitions des structures et constantes du système de fichiers
 #include "file_manager.h"
 
 FileNode* root_directory = NULL;
 FileNode* current_directory = NULL;
+int fs_fd;
 
 // Initialiser le système de fichiers
 void init_file_system() {
+    fs_fd = open(FS_FILENAME, O_RDWR | O_CREAT, 0644);
+    if (fs_fd < 0) {
+        perror("Erreur lors de l'ouverture du fichier système");
+        exit(EXIT_FAILURE);
+    }
+
+    // Essayer de charger le système de fichiers existant
+    if (load_file_system() != 0) {
+    // Si le chargement échoue, créer un nouveau système de fichiers
     root_directory = (FileNode*)malloc(sizeof(FileNode));
     strcpy(root_directory->name, "/");
     root_directory->type = DIRECTORY_TYPE;
@@ -15,7 +34,77 @@ void init_file_system() {
     root_directory->size = 0;
     root_directory->parent = NULL;
     root_directory->child_count = 0;
+    root_directory->content = NULL;
+    root_directory->is_open = 0;
+    root_directory->ref_count = 1;
+    root_directory->symlink_target = NULL;
+    }
     current_directory = root_directory;
+}
+
+// Sauvegarder un répertoire et ses contenus récursivement
+void save_directory(int fd, FileNode* dir) {
+    if (!dir) return;
+    
+    // écrire le noeud
+    write(fd, dir, sizeof(FileNode));
+    
+    // récursively save children
+    for (int i = 0; i < dir->child_count; i++) {
+        save_directory(fd, dir->children[i]);
+    }
+}
+
+// Sauvegarder le système de fichiers
+void save_file_system() {
+    if (fs_fd < 0) return;
+    
+    // Tronquer le fichier à zéro octet
+    ftruncate(fs_fd, 0);
+    lseek(fs_fd, 0, SEEK_SET);
+    
+    // Sauvegarder le système de fichiers
+    save_directory(fs_fd, root_directory);
+}
+
+// Récursivement charger un répertoire
+FileNode* load_directory(int fd) {
+    FileNode* node = (FileNode*)malloc(sizeof(FileNode));
+    
+    // Lire le noeud
+    if (read(fd, node, sizeof(FileNode)) <= 0) {
+        free(node);
+        return NULL;
+    }
+    
+    // Récursivement charger les enfants
+    for (int i = 0; i < node->child_count; i++) {
+        node->children[i] = load_directory(fd);
+        if (node->children[i]) {
+            node->children[i]->parent = node;
+        }
+    }
+    
+    return node;
+}
+
+// Charger le système de fichiers
+int load_file_system() {
+    if (fs_fd < 0) return -1;
+    
+    lseek(fs_fd, 0, SEEK_SET);
+    root_directory = load_directory(fs_fd);
+    
+    return root_directory ? 0 : -1;
+}
+
+// Fermer le système de fichiers
+void close_file_system() {
+    if (fs_fd >= 0) {
+        save_file_system();
+        close(fs_fd);
+        fs_fd = -1;
+    }
 }
 
 // Analyser le chemin
@@ -39,14 +128,14 @@ FileNode* get_file_by_path(const char* path) {
     char* token = strtok(path_copy, "/");
     while (token != NULL) {
         if (strcmp(token, ".") == 0) {
-            // 当前目录，不需要操作
+            // Current directory
         } else if (strcmp(token, "..") == 0) {
-            // 父目录
+            // Parent directory
             if (current->parent != NULL) {
                 current = current->parent;
             }
         } else {
-            // 查找子目录或文件
+            // Chercher le fichier dans les enfants
             int found = 0;
             for (int i = 0; i < current->child_count; i++) {
                 if (strcmp(current->children[i]->name, token) == 0) {
@@ -56,11 +145,13 @@ FileNode* get_file_by_path(const char* path) {
                 }
             }
             if (!found) {
-                // 如果是最后一个组件，可能是新文件名，返回父目录
+                // Si c'est le dernier composant du chemin, retourner le répertoire parent
+                // pour permettre la création de nouveaux fichiers/répertoires
                 if (strtok(NULL, "/") == NULL) {
                     return current;
                 }
-                return NULL;  // 路径无效
+                // Si ce n'est pas le dernier composant, le chemin est invalide
+                return NULL;
             }
         }
         token = strtok(NULL, "/");
@@ -76,7 +167,7 @@ int create_file(const char* path, int permissions, int size) {
     char *filename;
     strncpy(path_copy, path, MAX_PATH_LENGTH - 1);
     
-    // 获取最后一个'/'后的文件名
+    // Extraire le nom du fichier à partir du chemin complet
     filename = strrchr(path_copy, '/');
     filename = filename ? filename + 1 : path_copy;
     
@@ -92,13 +183,18 @@ int create_file(const char* path, int permissions, int size) {
     }
 
     FileNode* new_file = (FileNode*)malloc(sizeof(FileNode));
-    strncpy(new_file->name, filename, MAX_NAME_LENGTH - 1);  // 使用提取的文件名
+    strncpy(new_file->name, filename, MAX_NAME_LENGTH - 1);
+    //Initialiser le fichier
     new_file->name[MAX_NAME_LENGTH - 1] = '\0';
     new_file->type = FILE_TYPE;
     new_file->permissions = permissions;
     new_file->size = size;
     new_file->parent = parent;
     new_file->child_count = 0;
+    new_file->content = NULL;         
+    new_file->is_open = 0;  
+    new_file->ref_count = 1;        
+    new_file->symlink_target = NULL; 
 
     parent->children[parent->child_count++] = new_file;
     printf("Fichier '%s' créé avec permissions %d et taille %d.\n", path, permissions, size);
@@ -112,7 +208,7 @@ int create_directory(const char* path, int permissions) {
     char *dirname;
     strncpy(path_copy, path, MAX_PATH_LENGTH - 1);
     
-    // 获取最后一个'/'后的目录名
+    // Extraire le nom du répertoire à partir du chemin complet
     dirname = strrchr(path_copy, '/');
     dirname = dirname ? dirname + 1 : path_copy;
     
@@ -128,7 +224,7 @@ int create_directory(const char* path, int permissions) {
     }
 
     FileNode* new_dir = (FileNode*)malloc(sizeof(FileNode));
-    strncpy(new_dir->name, dirname, MAX_NAME_LENGTH - 1);  // 使用提取的目录名
+    strncpy(new_dir->name, dirname, MAX_NAME_LENGTH - 1);  // Utiliser le nom extrait
     new_dir->name[MAX_NAME_LENGTH - 1] = '\0';
     new_dir->type = DIRECTORY_TYPE;
     new_dir->permissions = permissions;
@@ -190,14 +286,14 @@ int change_directory(const char* path) {
         printf("Changement vers le répertoire racine\n");
         return 0;
     } else if (strcmp(path, ".") == 0) {
-        // 当前目录，不需要操作
+        // Current directory, faire rien
         return 0;
     } else {
         FileNode* target = NULL;
         
-        // 处理相对路径
+        // Trouver le répertoire cible
         if (path[0] != '/') {
-            // 在当前目录下查找
+            // Change to a subdirectory
             for (int i = 0; i < current_directory->child_count; i++) {
                 if (strcmp(current_directory->children[i]->name, path) == 0 && 
                     current_directory->children[i]->type == DIRECTORY_TYPE) {
@@ -206,7 +302,7 @@ int change_directory(const char* path) {
                 }
             }
         } else {
-            // 处理绝对路径
+            // Trouver le répertoire cible à partir de la racine
             target = get_file_by_path(path);
             if (target != NULL && target->type != DIRECTORY_TYPE) {
                 target = NULL;
@@ -232,7 +328,7 @@ int copy_file(const char* source, const char* destination) {
     strncpy(src_path, source, MAX_PATH_LENGTH - 1);
     src_path[MAX_PATH_LENGTH - 1] = '\0';
     
-    // 获取源文件的父目录路径
+    // Charger le fichier source
     char parent_path[MAX_PATH_LENGTH] = ".";
     src_name = strrchr(src_path, '/');
     if (src_name) {
@@ -249,7 +345,7 @@ int copy_file(const char* source, const char* destination) {
         return -1;
     }
     
-    // 在父目录中查找源文件
+    // CHarger le fichier source
     FileNode* src_file = NULL;
     for (int i = 0; i < parent->child_count; i++) {
         if (strcmp(parent->children[i]->name, src_name) == 0 && 
@@ -274,7 +370,7 @@ int move_file(const char* source, const char* destination) {
     strncpy(src_path, source, MAX_PATH_LENGTH - 1);
     src_path[MAX_PATH_LENGTH - 1] = '\0';
     
-    // 获取源文件的父目录路径
+    // Chercher le fichier source dans le répertoire parent
     char parent_path[MAX_PATH_LENGTH] = ".";
     src_name = strrchr(src_path, '/');
     if (src_name) {
@@ -291,7 +387,7 @@ int move_file(const char* source, const char* destination) {
         return -1;
     }
     
-    // 在父目录中查找源文件
+    // Chercher le fichier source dans le répertoire parent
     FileNode* src_file = NULL;
     int src_index = -1;
     for (int i = 0; i < parent->child_count; i++) {
@@ -308,7 +404,7 @@ int move_file(const char* source, const char* destination) {
     }
     
     if (create_file(destination, src_file->permissions, src_file->size) == 0) {
-        // 从源目录中删除文件
+        // Supprimer le fichier source
         for (int i = src_index; i < parent->child_count - 1; i++) {
             parent->children[i] = parent->children[i + 1];
         }
@@ -341,11 +437,11 @@ int delete_file(const char* filename) {
     strncpy(path_copy, filename, MAX_PATH_LENGTH - 1);
     path_copy[MAX_PATH_LENGTH - 1] = '\0';
     
-    // 获取最后一个'/'后的文件名
+    // Extraire le nom du fichier après le dernier '/'
     name = strrchr(path_copy, '/');
     name = name ? name + 1 : path_copy;
     
-    // 获取父目录路径
+    // Extraction du nom du fichier à partir du chemin complet
     char parent_path[MAX_PATH_LENGTH] = ".";
     if (name != path_copy) {
         strncpy(parent_path, path_copy, name - path_copy);
@@ -358,7 +454,7 @@ int delete_file(const char* filename) {
         return -1;
     }
     
-    // 在父目录中查找目标文件
+    // Trouver le fichier cible
     FileNode* target = NULL;
     int target_index = -1;
     for (int i = 0; i < parent->child_count; i++) {
@@ -374,14 +470,14 @@ int delete_file(const char* filename) {
         return -1;
     }
     
-    // 如果是目录，递归删除
+    // Si c'est un répertoire, supprimer récursivement
     if (target->type == DIRECTORY_TYPE) {
         recursive_delete(target);
     } else {
         free(target);
     }
     
-    // 从父目录中移除该节点
+    // Supprimer le nœud du parent
     for (int i = target_index; i < parent->child_count - 1; i++) {
         parent->children[i] = parent->children[i + 1];
     }
@@ -437,6 +533,163 @@ int set_permissions(const char* filename, int permissions) {
     return 0;
 }
 
+// Ouvrir un fichier
+int open_file(const char* path, const char* mode) {
+    FileNode* file = get_file_by_path(path);
+    if (file == NULL || file->type != FILE_TYPE) {
+        printf("Erreur : fichier '%s' non trouvé.\n", path);
+        return -1;
+    }
+
+    int owner_perm = (file->permissions / 100);
+    int requested_mode = 0;
+
+    if (strcmp(mode, "r") == 0) {
+        if (!(owner_perm & 4)) {
+            printf("Erreur : permission de lecture refusée.\n");
+            return -1;
+        }
+        requested_mode = FILE_MODE_READ;
+    } else if (strcmp(mode, "w") == 0) {
+        if (!(owner_perm & 2)) {
+            printf("Erreur : permission d'écriture refusée.\n");
+            return -1;
+        }
+        requested_mode = FILE_MODE_WRITE;
+    } else if (strcmp(mode, "rw") == 0) {
+        if (!(owner_perm & 6)) {
+            printf("Erreur : permissions insuffisantes.\n");
+            return -1;
+        }
+        requested_mode = FILE_MODE_BOTH;
+    } else {
+        printf("Erreur : mode d'ouverture invalide.\n");
+        return -1;
+    }
+
+    if (file->is_open) {
+        printf("Erreur : fichier déjà ouvert.\n");
+        return -1;
+    }
+
+    file->is_open = 1;
+    file->open_mode = requested_mode;
+    printf("Fichier '%s' ouvert en mode %s.\n", path, mode);
+    return 0;
+}
+
+int read_file(const char* path, char* buffer, int size) {
+    FileNode* file = get_file_by_path(path);
+    if (file == NULL || file->type != FILE_TYPE) {
+        printf("Erreur : fichier '%s' non trouvé.\n", path);
+        return -1;
+    }
+
+    if (!file->is_open) {
+        printf("Erreur : fichier non ouvert.\n");
+        return -1;
+    }
+
+    if (!(file->open_mode & FILE_MODE_READ)) {
+        printf("Erreur : fichier non ouvert en lecture.\n");
+        return -1;
+    }
+
+    if (file->content == NULL) {
+        printf("Fichier vide.\n");
+        buffer[0] = '\0';
+        return 0;
+    }
+
+    strncpy(buffer, file->content, size);
+    buffer[size - 1] = '\0';
+    printf("Contenu lu : %s\n", buffer);
+    return strlen(buffer);
+}
+
+int write_file(const char* path, const char* content) {
+    FileNode* file = get_file_by_path(path);
+    if (file == NULL || file->type != FILE_TYPE) {
+        printf("Erreur : fichier '%s' non trouvé.\n", path);
+        return -1;
+    }
+
+    if (!file->is_open) {
+        printf("Erreur : fichier non ouvert.\n");
+        return -1;
+    }
+
+    if (!(file->open_mode & FILE_MODE_WRITE)) {
+        printf("Erreur : fichier non ouvert en écriture.\n");
+        return -1;
+    }
+
+    if (file->content != NULL) {
+        free(file->content);
+    }
+
+    file->content = strdup(content);
+    file->size = strlen(content);
+    printf("Contenu écrit dans '%s'.\n", path);
+    return 0;
+}
+
+int close_file(const char* path) {
+    FileNode* file = get_file_by_path(path);
+    if (file == NULL || file->type != FILE_TYPE) {
+        printf("Erreur : fichier '%s' non trouvé.\n", path);
+        return -1;
+    }
+
+    if (!file->is_open) {
+        printf("Erreur : fichier non ouvert.\n");
+        return -1;
+    }
+
+    file->is_open = 0;
+    file->open_mode = 0;  // 清除打开模式
+    printf("Fichier '%s' fermé.\n", path);
+    return 0;
+}
+
+// Créer un lien dur
+int create_hard_link(const char* target, const char* link_name) {
+    FileNode* target_file = get_file_by_path(target);
+    if (target_file == NULL || target_file->type != FILE_TYPE) {
+        printf("Erreur : fichier cible '%s' non trouvé.\n", target);
+        return -1;
+    }
+
+    target_file->ref_count++;
+    FileNode* link = (FileNode*)malloc(sizeof(FileNode));
+    memcpy(link, target_file, sizeof(FileNode));
+    strncpy(link->name, link_name, MAX_NAME_LENGTH - 1);
+    link->name[MAX_NAME_LENGTH - 1] = '\0';
+
+    FileNode* parent = get_file_by_path(".");
+    parent->children[parent->child_count++] = link;
+    printf("Lien dur '%s' créé vers '%s'.\n", link_name, target);
+    return 0;
+}
+
+// Créer un lien symbolique
+int create_symbolic_link(const char* target, const char* link_name) {
+    FileNode* link = (FileNode*)malloc(sizeof(FileNode));
+    strncpy(link->name, link_name, MAX_NAME_LENGTH - 1);
+    link->name[MAX_NAME_LENGTH - 1] = '\0';
+    link->type = FILE_TYPE;
+    link->permissions = 777;
+    link->size = 0;
+    link->symlink_target = strdup(target);
+    link->is_open = 0;
+    link->ref_count = 1;
+
+    FileNode* parent = get_file_by_path(".");
+    parent->children[parent->child_count++] = link;
+    printf("Lien symbolique '%s' créé vers '%s'.\n", link_name, target);
+    return 0;
+}
+
 // Traiter les commandes
 void handle_command() {
     // Vérifier si le répertoire racine existe
@@ -444,23 +697,55 @@ void handle_command() {
         init_file_system();
     }
 
-    char input[100];
+    char input[1024];
     while (1) {
-        printf("\nEntrez une commande (create/mkdir/ls/copy/move/rm/chmod/cd/exit) : ");
+        printf("\nEntrez une commande (create/mkdir/ls/copy/move/rm/chmod/cd/open/close/read/write/ln/exit) : ");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = '\0';
 
         if (strcmp(input, "exit") == 0) {
+            printf("Sauvegarde du système de fichiers...\n");
+            close_file_system();
             printf("Au revoir !\n");
             break;
         }
 
         char *argv[10];
         int argc = 0;
-        char *token = strtok(input, " ");
-        while (token != NULL && argc < 10) {
-            argv[argc++] = token;
-            token = strtok(NULL, " ");
+        char *token = NULL;
+        char *rest = input;
+        char *quote_start = NULL;
+
+        while (*rest) {
+            // Passer les espaces blancs
+            while (*rest && isspace(*rest)) rest++;
+            if (!*rest) break;
+
+            if (*rest == '"') {
+                // Traiter les chaînes entre guillemets
+                rest++; 
+                quote_start = rest;
+                while (*rest && *rest != '"') rest++;
+                if (*rest == '"') {
+                    *rest = '\0'; 
+                    argv[argc++] = quote_start;
+                    rest++;
+                } else {
+                    // Non fermere les guillemets
+                    argv[argc++] = quote_start;
+                    break;
+                }
+            } else {
+                // Traiter les mots séparés par des espaces
+                token = rest;
+                while (*rest && !isspace(*rest) && *rest != '"') rest++;
+                if (*rest) {
+                    *rest++ = '\0';
+                }
+                argv[argc++] = token;
+            }
+
+            if (argc >= 10) break;
         }
 
         if (argc == 0) continue;
@@ -480,12 +765,12 @@ void handle_command() {
         } else if (strcmp(command, "move") == 0 && argc == 3) {
             move_file(argv[1], argv[2]);
         } else if ((strcmp(command, "rm") == 0 || strcmp(command, "delete") == 0) && argc >= 2) {
-            // 检查是否为递归删除
+            // Verifier si la commande est rm -r
             if (argc == 3 && strcmp(argv[1], "-r") == 0) {
-                // rm -r 命令
+                // rm -r 
                 delete_file(argv[2]);
             } else {
-                // 检查目标是否为目录
+                // Vrifier si le chemin est un répertoire
                 char path_copy[MAX_PATH_LENGTH];
                 strncpy(path_copy, argv[1], MAX_PATH_LENGTH - 1);
                 path_copy[MAX_PATH_LENGTH - 1] = '\0';
@@ -499,7 +784,20 @@ void handle_command() {
             }
         } else if (strcmp(command, "chmod") == 0 && argc == 3) {
             set_permissions(argv[1], atoi(argv[2]));
-        } else {
+        } else if (strcmp(command, "open") == 0 && argc == 3) {
+            open_file(argv[1], argv[2]);
+        } else if (strcmp(command, "close") == 0 && argc == 2) {
+            close_file(argv[1]);
+        } else if (strcmp(command, "read") == 0 && argc == 2) {
+            char buffer[1024];
+            read_file(argv[1], buffer, sizeof(buffer));
+        } else if (strcmp(command, "write") == 0 && argc == 3) {
+            write_file(argv[1], argv[2]);
+        } else if (strcmp(command, "ln") == 0 && argc == 3) {
+            create_hard_link(argv[1], argv[2]);
+        } else if (strcmp(command, "ln") == 0 && argc == 4 && strcmp(argv[1], "-s") == 0) {
+            create_symbolic_link(argv[2], argv[3]);
+        }else {
             printf("Commande non reconnue ou arguments invalides.\n");
             printf("Usage:\n");
             printf("  create <fichier> <permissions> <taille>\n");
@@ -510,6 +808,12 @@ void handle_command() {
             printf("  move <source> <destination>\n");
             printf("  rm [-r] <chemin>\n");
             printf("  chmod <chemin> <permissions>\n");
+            printf("  open <fichier> <mode>     (mode: r ou w)\n");
+            printf("  close <fichier>\n");
+            printf("  read <fichier>\n");
+            printf("  write <fichier> <contenu>\n");
+            printf("  ln <source> <lien>        (lien dur)\n");
+            printf("  ln -s <source> <lien>     (lien symbolique)\n");
             printf("  exit\n");
         }
     }
