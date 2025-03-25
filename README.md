@@ -57,7 +57,7 @@
 
 12. **Écrire dans un fichier**
     - Commande : `write nom_fichier contenu`
-    - Exemple : `write test.txt Hello,World!`
+    - Exemple : `write test.txt “Hello, World!”`
 
 13. **Créer un lien dur**
     - Commande : `ln source nom_lien`
