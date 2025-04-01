@@ -36,7 +36,7 @@ extern FileNode* root_directory;  // Répertoire racine
 extern FileNode* current_directory;  // Répertoire courant
 
 // Fonctions d'opération du système de fichiers
-int create_file(const char* path, int permissions, int size);
+int create_file(const char* path, int permissions);
 int create_directory(const char* path, int permissions);
 void list_files(const char* path);
 int copy_file(const char* source, const char* destination);

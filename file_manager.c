@@ -161,7 +161,7 @@ FileNode* get_file_by_path(const char* path) {
 }
 
 // Créer un fichier
-int create_file(const char* path, int permissions, int size) {
+int create_file(const char* path, int permissions) {
     // Obtenir le répertoire parent et le nom du fichier
     char path_copy[MAX_PATH_LENGTH];
     char *filename;
@@ -184,11 +184,10 @@ int create_file(const char* path, int permissions, int size) {
 
     FileNode* new_file = (FileNode*)malloc(sizeof(FileNode));
     strncpy(new_file->name, filename, MAX_NAME_LENGTH - 1);
-    //Initialiser le fichier
     new_file->name[MAX_NAME_LENGTH - 1] = '\0';
     new_file->type = FILE_TYPE;
     new_file->permissions = permissions;
-    new_file->size = size;
+    new_file->size = 0;  // initialize size 0
     new_file->parent = parent;
     new_file->child_count = 0;
     new_file->content = NULL;         
@@ -197,7 +196,7 @@ int create_file(const char* path, int permissions, int size) {
     new_file->symlink_target = NULL; 
 
     parent->children[parent->child_count++] = new_file;
-    printf("Fichier '%s' créé avec permissions %d et taille %d.\n", path, permissions, size);
+    printf("Fichier '%s' créé avec permissions %d.\n", path, permissions);
     return 0;
 }
 
@@ -254,10 +253,10 @@ void list_files(const char* path) {
         return;
     }
 
-    // 修改这行，使用完整路径而不是简单的 '.'
+    // Afficher le chemin complet du répertoire
     printf("Contenu du répertoire '%s' :\n", 
            strcmp(path, ".") == 0 ? get_current_path() : path);
-    
+
     for (int i = 0; i < dir->child_count; i++) {
         FileNode* node = dir->children[i];
         printf("%s %s, permissions : %d", 
@@ -331,7 +330,7 @@ int copy_file(const char* source, const char* destination) {
     strncpy(src_path, source, MAX_PATH_LENGTH - 1);
     src_path[MAX_PATH_LENGTH - 1] = '\0';
     
-    // Charger le fichier source
+    // Chercher le fichier source dans le répertoire parent
     char parent_path[MAX_PATH_LENGTH] = ".";
     src_name = strrchr(src_path, '/');
     if (src_name) {
@@ -348,7 +347,7 @@ int copy_file(const char* source, const char* destination) {
         return -1;
     }
     
-    // CHarger le fichier source
+    // Charger le fichier source
     FileNode* src_file = NULL;
     for (int i = 0; i < parent->child_count; i++) {
         if (strcmp(parent->children[i]->name, src_name) == 0 && 
@@ -363,9 +362,21 @@ int copy_file(const char* source, const char* destination) {
         return -1;
     }
     
-    return create_file(destination, src_file->permissions, src_file->size);
+    // Copyer le fichier source
+    if (create_file(destination, src_file->permissions) == 0) {
+        // Copyer le contenu du fichier source
+        FileNode* dest_file = get_file_by_path(destination);
+        if (dest_file != NULL && src_file->content != NULL) {
+            dest_file->content = strdup(src_file->content);
+            dest_file->size = src_file->size;
+            printf("Fichier '%s' copié vers '%s'.\n", source, destination);
+            return 0;
+        }
+    }
+    return -1;
 }
 
+// Déplacer un fichier
 int move_file(const char* source, const char* destination) {
     // Obtenir les informations du chemin source
     char src_path[MAX_PATH_LENGTH];
@@ -406,14 +417,22 @@ int move_file(const char* source, const char* destination) {
         return -1;
     }
     
-    if (create_file(destination, src_file->permissions, src_file->size) == 0) {
-        // Supprimer le fichier source
-        for (int i = src_index; i < parent->child_count - 1; i++) {
-            parent->children[i] = parent->children[i + 1];
+    if (create_file(destination, src_file->permissions) == 0) {
+        // Copyer le contenu du fichier source
+        FileNode* dest_file = get_file_by_path(destination);
+        if (dest_file != NULL && src_file->content != NULL) {
+            dest_file->content = strdup(src_file->content);
+            dest_file->size = src_file->size;
+            
+            // Supprimer le fichier source
+            for (int i = src_index; i < parent->child_count - 1; i++) {
+                parent->children[i] = parent->children[i + 1];
+            }
+            parent->child_count--;
+            free(src_file);
+            printf("Fichier '%s' déplacé vers '%s'.\n", source, destination);
+            return 0;
         }
-        parent->child_count--;
-        free(src_file);
-        return 0;
     }
     return -1;
 }
@@ -604,10 +623,12 @@ int read_file(const char* path, char* buffer, int size) {
         return 0;
     }
 
-    strncpy(buffer, file->content, size);
-    buffer[size - 1] = '\0';
+    // Assurer que le buffer est suffisamment grand
+    int copy_size = (size - 1 < file->size) ? (size - 1) : file->size;
+    strncpy(buffer, file->content, copy_size);
+    buffer[copy_size] = '\0';
     printf("Contenu lu : %s\n", buffer);
-    return strlen(buffer);
+    return copy_size;
 }
 
 int write_file(const char* path, const char* content) {
@@ -627,14 +648,16 @@ int write_file(const char* path, const char* content) {
         return -1;
     }
 
+    // Libre la mémoire actuelle du contenu du fichier
     if (file->content != NULL) {
         free(file->content);
     }
 
+    // Alloue de la mémoire pour le nouveau contenu
     file->content = strdup(content);
     file->size = strlen(content);
-    printf("Contenu écrit dans '%s'.\n", path);
-    return 0;
+    printf("Contenu écrit dans '%s' (taille: %d octets).\n", path, file->size);
+    return file->size;
 }
 
 int close_file(const char* path) {
@@ -650,9 +673,31 @@ int close_file(const char* path) {
     }
 
     file->is_open = 0;
-    file->open_mode = 0;  // 清除打开模式
+    file->open_mode = 0;  // Réinitialiser le mode d'ouverture
     printf("Fichier '%s' fermé.\n", path);
     return 0;
+}
+
+// Obtenir le chemin complet du répertoire courant
+char* get_current_path() {
+    static char path[MAX_PATH_LENGTH];
+    FileNode* current = current_directory;
+    path[0] = '\0';
+    
+    // Si c'est le répertoire racine, retourner "/"
+    if (current == root_directory) {
+        return "/";
+    }
+    
+    // Construire le chemin complet
+    while (current != root_directory) {
+        char temp[MAX_PATH_LENGTH];
+        snprintf(temp, sizeof(temp), "/%s%s", current->name, path);
+        strncpy(path, temp, MAX_PATH_LENGTH - 1);
+        current = current->parent;
+    }
+    
+    return path[0] ? path : "/";
 }
 
 // Créer un lien dur
@@ -755,8 +800,8 @@ void handle_command() {
 
         const char *command = argv[0];
 
-        if (strcmp(command, "create") == 0 && argc == 4) {
-            create_file(argv[1], atoi(argv[2]), atoi(argv[3]));
+        if (strcmp(command, "create") == 0 && argc == 3) {  
+            create_file(argv[1], atoi(argv[2]));  
         } else if (strcmp(command, "mkdir") == 0 && argc == 3) {
             create_directory(argv[1], atoi(argv[2]));
         } else if (strcmp(command, "ls") == 0 || strcmp(command, "list") == 0) {
@@ -803,7 +848,7 @@ void handle_command() {
         }else {
             printf("Commande non reconnue ou arguments invalides.\n");
             printf("Usage:\n");
-            printf("  create <fichier> <permissions> <taille>\n");
+            printf("  create <fichier> <permissions>\n");
             printf("  mkdir <répertoire> <permissions>\n");
             printf("  ls [chemin]\n");
             printf("  cd <chemin>\n");
@@ -820,26 +865,4 @@ void handle_command() {
             printf("  exit\n");
         }
     }
-}
-
-// 获取当前完整路径
-char* get_current_path() {
-    static char path[MAX_PATH_LENGTH];
-    FileNode* current = current_directory;
-    path[0] = '\0';
-    
-    // 如果是根目录，直接返回 "/"
-    if (current == root_directory) {
-        return "/";
-    }
-    
-    // 构建完整路径
-    while (current != root_directory) {
-        char temp[MAX_PATH_LENGTH];
-        snprintf(temp, sizeof(temp), "/%s%s", current->name, path);
-        strncpy(path, temp, MAX_PATH_LENGTH - 1);
-        current = current->parent;
-    }
-    
-    return path[0] ? path : "/";
 }

@@ -8,8 +8,8 @@
 ## Commandes Disponibles
 
 1. **Créer un fichier**
-   - Commande : `create nom_fichier permissions taille`
-   - Exemple : `create test.txt 644 1024`
+   - Commande : `create nom_fichier permissions`
+   - Exemple : `create test.txt 644`
 
 2. **Créer un répertoire**
    - Commande : `mkdir nom_repertoire permissions`
