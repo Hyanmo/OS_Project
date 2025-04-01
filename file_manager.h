@@ -61,4 +61,7 @@ int load_file_system();
 // Fonction pour gérer les commandes de l'utilisateur
 void handle_command();
 
+// Obtenir le chemin complet du répertoire courant
+char* get_current_path();
+
 #endif // FILE_MANAGER_H

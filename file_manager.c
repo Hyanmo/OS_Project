@@ -254,7 +254,10 @@ void list_files(const char* path) {
         return;
     }
 
-    printf("Contenu du répertoire '%s' :\n", path);
+    // 修改这行，使用完整路径而不是简单的 '.'
+    printf("Contenu du répertoire '%s' :\n", 
+           strcmp(path, ".") == 0 ? get_current_path() : path);
+    
     for (int i = 0; i < dir->child_count; i++) {
         FileNode* node = dir->children[i];
         printf("%s %s, permissions : %d", 
@@ -817,4 +820,26 @@ void handle_command() {
             printf("  exit\n");
         }
     }
+}
+
+// 获取当前完整路径
+char* get_current_path() {
+    static char path[MAX_PATH_LENGTH];
+    FileNode* current = current_directory;
+    path[0] = '\0';
+    
+    // 如果是根目录，直接返回 "/"
+    if (current == root_directory) {
+        return "/";
+    }
+    
+    // 构建完整路径
+    while (current != root_directory) {
+        char temp[MAX_PATH_LENGTH];
+        snprintf(temp, sizeof(temp), "/%s%s", current->name, path);
+        strncpy(path, temp, MAX_PATH_LENGTH - 1);
+        current = current->parent;
+    }
+    
+    return path[0] ? path : "/";
 }
