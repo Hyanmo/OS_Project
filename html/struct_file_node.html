@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Système de fichiers virtuel: Référence de la structure FileNode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Système de fichiers virtuel
+   </div>
+   <div id="projectbrief">Une implémentation simple d&#39;un système de fichiers</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('struct_file_node.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Attributs publics</a> &#124;
+<a href="struct_file_node-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle"><div class="title">Référence de la structure FileNode</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Structure représentant un nœud dans le système de fichiers.  
+ <a href="#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="file__manager_8h_source.html">file_manager.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Attributs publics</h2></td></tr>
+<tr class="memitem:a81eb9d28f3c3b61a62baa84867da4c34" id="r_a81eb9d28f3c3b61a62baa84867da4c34"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81eb9d28f3c3b61a62baa84867da4c34">name</a> [<a class="el" href="file__manager_8h.html#a0c397a708cec89c74029582574516b30">MAX_NAME_LENGTH</a>]</td></tr>
+<tr class="separator:a81eb9d28f3c3b61a62baa84867da4c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9129c4a297476733349640040bd389a7" id="r_a9129c4a297476733349640040bd389a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9129c4a297476733349640040bd389a7">type</a></td></tr>
+<tr class="separator:a9129c4a297476733349640040bd389a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69a0970c579646e144d85e6f34e82727" id="r_a69a0970c579646e144d85e6f34e82727"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69a0970c579646e144d85e6f34e82727">permissions</a></td></tr>
+<tr class="separator:a69a0970c579646e144d85e6f34e82727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af024063545b6e16d9cc5bf4008653e9b" id="r_af024063545b6e16d9cc5bf4008653e9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af024063545b6e16d9cc5bf4008653e9b">size</a></td></tr>
+<tr class="separator:af024063545b6e16d9cc5bf4008653e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf86230398d4c4e1cbb4f747ea4b011" id="r_afdf86230398d4c4e1cbb4f747ea4b011"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_file_node.html">FileNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdf86230398d4c4e1cbb4f747ea4b011">parent</a></td></tr>
+<tr class="separator:afdf86230398d4c4e1cbb4f747ea4b011"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02ce2a64682a3be2d042c50b0cf67cb6" id="r_a02ce2a64682a3be2d042c50b0cf67cb6"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_file_node.html">FileNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02ce2a64682a3be2d042c50b0cf67cb6">children</a> [<a class="el" href="file__manager_8h.html#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>]</td></tr>
+<tr class="separator:a02ce2a64682a3be2d042c50b0cf67cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a674df53502c5436a31a80e53c94f3f9f" id="r_a674df53502c5436a31a80e53c94f3f9f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a674df53502c5436a31a80e53c94f3f9f">child_count</a></td></tr>
+<tr class="separator:a674df53502c5436a31a80e53c94f3f9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affcd5663b22e735143168dac888acbfa" id="r_affcd5663b22e735143168dac888acbfa"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affcd5663b22e735143168dac888acbfa">content</a></td></tr>
+<tr class="separator:affcd5663b22e735143168dac888acbfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a737831526a202882dd44a9ffdf5da6" id="r_a1a737831526a202882dd44a9ffdf5da6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a737831526a202882dd44a9ffdf5da6">is_open</a></td></tr>
+<tr class="separator:a1a737831526a202882dd44a9ffdf5da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bf5e3473c5146e3d989d7b546d84617" id="r_a0bf5e3473c5146e3d989d7b546d84617"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bf5e3473c5146e3d989d7b546d84617">ref_count</a></td></tr>
+<tr class="separator:a0bf5e3473c5146e3d989d7b546d84617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ed9c04237582765a6c87d4b2c0cf6f3" id="r_a9ed9c04237582765a6c87d4b2c0cf6f3"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ed9c04237582765a6c87d4b2c0cf6f3">symlink_target</a></td></tr>
+<tr class="separator:a9ed9c04237582765a6c87d4b2c0cf6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade10381f1c95a75ec997f113378b6639" id="r_ade10381f1c95a75ec997f113378b6639"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade10381f1c95a75ec997f113378b6639">open_mode</a></td></tr>
+<tr class="separator:ade10381f1c95a75ec997f113378b6639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Structure représentant un nœud dans le système de fichiers. </p>
+<p>Cette structure est utilisée pour représenter à la fois les fichiers et les répertoires. Elle contient toutes les métadonnées nécessaires ainsi que les liens vers d'autres nœuds. </p>
+</div><h2 class="groupheader">Documentation des données membres</h2>
+<a id="a674df53502c5436a31a80e53c94f3f9f" name="a674df53502c5436a31a80e53c94f3f9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a674df53502c5436a31a80e53c94f3f9f">&#9670;&#160;</a></span>child_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FileNode::child_count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Nombre d'enfants dans le répertoire </p>
+
+</div>
+</div>
+<a id="a02ce2a64682a3be2d042c50b0cf67cb6" name="a02ce2a64682a3be2d042c50b0cf67cb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02ce2a64682a3be2d042c50b0cf67cb6">&#9670;&#160;</a></span>children</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="struct_file_node.html">FileNode</a>* FileNode::children[<a class="el" href="file__manager_8h.html#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Tableau des enfants (pour les répertoires) </p>
+
+</div>
+</div>
+<a id="affcd5663b22e735143168dac888acbfa" name="affcd5663b22e735143168dac888acbfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affcd5663b22e735143168dac888acbfa">&#9670;&#160;</a></span>content</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* FileNode::content</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Contenu du fichier </p>
+
+</div>
+</div>
+<a id="a1a737831526a202882dd44a9ffdf5da6" name="a1a737831526a202882dd44a9ffdf5da6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a737831526a202882dd44a9ffdf5da6">&#9670;&#160;</a></span>is_open</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FileNode::is_open</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>État du fichier (1=ouvert, 0=fermé) </p>
+
+</div>
+</div>
+<a id="a81eb9d28f3c3b61a62baa84867da4c34" name="a81eb9d28f3c3b61a62baa84867da4c34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81eb9d28f3c3b61a62baa84867da4c34">&#9670;&#160;</a></span>name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char FileNode::name[<a class="el" href="file__manager_8h.html#a0c397a708cec89c74029582574516b30">MAX_NAME_LENGTH</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Nom du fichier ou répertoire </p>
+
+</div>
+</div>
+<a id="ade10381f1c95a75ec997f113378b6639" name="ade10381f1c95a75ec997f113378b6639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade10381f1c95a75ec997f113378b6639">&#9670;&#160;</a></span>open_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FileNode::open_mode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Mode d'ouverture actuel </p>
+
+</div>
+</div>
+<a id="afdf86230398d4c4e1cbb4f747ea4b011" name="afdf86230398d4c4e1cbb4f747ea4b011"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf86230398d4c4e1cbb4f747ea4b011">&#9670;&#160;</a></span>parent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="struct_file_node.html">FileNode</a>* FileNode::parent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointeur vers le répertoire parent </p>
+
+</div>
+</div>
+<a id="a69a0970c579646e144d85e6f34e82727" name="a69a0970c579646e144d85e6f34e82727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69a0970c579646e144d85e6f34e82727">&#9670;&#160;</a></span>permissions</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FileNode::permissions</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permissions (format octal, ex: 644) </p>
+
+</div>
+</div>
+<a id="a0bf5e3473c5146e3d989d7b546d84617" name="a0bf5e3473c5146e3d989d7b546d84617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bf5e3473c5146e3d989d7b546d84617">&#9670;&#160;</a></span>ref_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FileNode::ref_count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Nombre de références (pour les liens durs) </p>
+
+</div>
+</div>
+<a id="af024063545b6e16d9cc5bf4008653e9b" name="af024063545b6e16d9cc5bf4008653e9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af024063545b6e16d9cc5bf4008653e9b">&#9670;&#160;</a></span>size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FileNode::size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Taille du fichier en octets </p>
+
+</div>
+</div>
+<a id="a9ed9c04237582765a6c87d4b2c0cf6f3" name="a9ed9c04237582765a6c87d4b2c0cf6f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ed9c04237582765a6c87d4b2c0cf6f3">&#9670;&#160;</a></span>symlink_target</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* FileNode::symlink_target</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cible du lien symbolique </p>
+
+</div>
+</div>
+<a id="a9129c4a297476733349640040bd389a7" name="a9129c4a297476733349640040bd389a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9129c4a297476733349640040bd389a7">&#9670;&#160;</a></span>type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a> FileNode::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type (FILE_TYPE ou DIRECTORY_TYPE) </p>
+
+</div>
+</div>
+<hr/>La documentation de cette structure a été générée à partir du fichier suivant :<ul>
+<li><a class="el" href="file__manager_8h_source.html">file_manager.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="struct_file_node.html">FileNode</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

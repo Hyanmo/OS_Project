@@ -1,0 +1,103 @@
+\doxysection{file\+\_\+manager.\+h}
+\hypertarget{file__manager_8h_source}{}\label{file__manager_8h_source}\mbox{\hyperlink{file__manager_8h}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FILE\_MANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FILE\_MANAGER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Simulation\ du\ système\ de\ fichiers}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ MAX\_FILES\ 100}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MAX\_PATH\_LENGTH\ 256}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ MAX\_NAME\_LENGTH\ 50}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a}{FILE\_TYPE}},}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209}{DIRECTORY\_TYPE}}}
+\DoxyCodeLine{00012\ \}\ \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}{FileType}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Définition\ des\ modes\ d'ouverture\ de\ fichier}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ FILE\_MODE\_READ\ \ 1}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ FILE\_MODE\_WRITE\ 2}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ FILE\_MODE\_BOTH\ \ 3}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ FS\_FILENAME\ "{}filesystem.dat"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ MAX\_FILES\ 100}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ MAX\_PATH\_LENGTH\ 256}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ MAX\_NAME\_LENGTH\ 50}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a}{FILE\_TYPE}},\ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209}{DIRECTORY\_TYPE}}\ \ }
+\DoxyCodeLine{00053\ \}\ \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}{FileType}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ FILE\_MODE\_READ\ \ 1}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ FILE\_MODE\_WRITE\ 2}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ FILE\_MODE\_BOTH\ \ 3}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ FS\_FILENAME\ "{}filesystem.dat"{}}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_file_node}{FileNode}}\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_file_node_a81eb9d28f3c3b61a62baa84867da4c34}{name}}[\mbox{\hyperlink{file__manager_8h_a0c397a708cec89c74029582574516b30}{MAX\_NAME\_LENGTH}}];\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}{FileType}}\ \mbox{\hyperlink{struct_file_node_a9129c4a297476733349640040bd389a7}{type}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_node_a69a0970c579646e144d85e6f34e82727}{permissions}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_node_af024063545b6e16d9cc5bf4008653e9b}{size}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_file_node}{FileNode}}*\ \mbox{\hyperlink{struct_file_node_afdf86230398d4c4e1cbb4f747ea4b011}{parent}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_file_node}{FileNode}}*\ \mbox{\hyperlink{struct_file_node_a02ce2a64682a3be2d042c50b0cf67cb6}{children}}[\mbox{\hyperlink{file__manager_8h_a2c5eecb22513a88c24ae5831a3265e54}{MAX\_FILES}}];\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_node_a674df53502c5436a31a80e53c94f3f9f}{child\_count}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{struct_file_node_affcd5663b22e735143168dac888acbfa}{content}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_node_a1a737831526a202882dd44a9ffdf5da6}{is\_open}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_node_a0bf5e3473c5146e3d989d7b546d84617}{ref\_count}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{struct_file_node_a9ed9c04237582765a6c87d4b2c0cf6f3}{symlink\_target}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_node_ade10381f1c95a75ec997f113378b6639}{open\_mode}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \}\ \mbox{\hyperlink{struct_file_node}{FileNode}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_file_node}{FileNode}}*\ \mbox{\hyperlink{file__manager_8c_a5ade22bbc39aee8b1a2f3bc1f5f4ff27}{root\_directory}};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_file_node}{FileNode}}*\ \mbox{\hyperlink{file__manager_8c_a68ff57a1cc47283533fc009cc37a895d}{current\_directory}};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00097\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_ae5cb914a15766851fb08fc082e0706e1}{create\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_node_a69a0970c579646e144d85e6f34e82727}{permissions}});}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00105\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_ab22d2920e71af9a63143f8959624ada7}{create\_directory}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_node_a69a0970c579646e144d85e6f34e82727}{permissions}});}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00111\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file__manager_8h_a779f02554faba6a4360b195f8e294246}{list\_files}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00119\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_a53d5c856a4d9db454276915b768d445a}{copy\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ source,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ destination);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00127\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_a8a2b35f39891d7ffa8e3db575a8df228}{move\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ source,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ destination);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00134\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_ac0daef4f09b7330b4dc70425fbcc3d53}{delete\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00142\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_ab9ea7bebad3e5468386e809e394f50cf}{set\_permissions}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_node_a69a0970c579646e144d85e6f34e82727}{permissions}});}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00149\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_aca58047d8f2692f18e62862a64ab1caf}{change\_directory}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00156\ \mbox{\hyperlink{struct_file_node}{FileNode}}*\ \mbox{\hyperlink{file__manager_8h_a26d361701ad7dd7bc64f50b35ad89e21}{get\_file\_by\_path}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00164\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_ad64ced3f6f04c9a3dfda43d8f4891897}{open\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mode);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00171\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_a614cf84ed84443e4838db7d31d27f0ac}{close\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00180\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_a66d42bff955508c02923a1594b699d22}{read\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ \textcolor{keywordtype}{char}*\ buffer,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_node_af024063545b6e16d9cc5bf4008653e9b}{size}});}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00188\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_a4a5f92e121ced273d5862cc2b1fce146}{write\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{struct_file_node_affcd5663b22e735143168dac888acbfa}{content}});}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00196\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_a28028fb7b248b40d13476bac25b5690d}{create\_hard\_link}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ target,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ link\_name);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00204\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_af16add08d0b43af6aa076f0870439c16}{create\_symbolic\_link}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ target,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ link\_name);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00209\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file__manager_8h_a31fa5fec2e8ef080df2ebe3c444ef358}{init\_file\_system}}();}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00214\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file__manager_8h_a6fd6fa9d4bce870a628123aa5da1eeab}{save\_file\_system}}();}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00219\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file__manager_8h_ade7fcdc72941c0e6cdec7bd6d8e67581}{close\_file\_system}}();}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00225\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__manager_8h_a4351f6d9769bae6e25c1140c94abf227}{load\_file\_system}}();}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00230\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file__manager_8h_a2f04d4017a5fdb44b0cb34e012c97891}{handle\_command}}();}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00236\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{file__manager_8h_a4180aa65e5de8084a41478de6c2b47e1}{get\_current\_path}}();}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ FILE\_MANAGER\_H}}
+
+\end{DoxyCode}

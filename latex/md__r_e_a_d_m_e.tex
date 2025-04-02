@@ -1,0 +1,111 @@
+\chapter{Guide d\textquotesingle{}utilisation du Gestionnaire de Fichiers}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Guide d\textquotesingle{}utilisation du Gestionnaire de Fichiers@{Guide d\textquotesingle{}utilisation du Gestionnaire de Fichiers}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Compilation et Exécution}{Compilation et Exécution}}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyEnumerate}
+\item Compilez le programme avec la commande {\ttfamily make}
+\item Exécutez le programme avec {\ttfamily ./file\+\_\+manager}
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Commandes Disponibles}{Commandes Disponibles}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Créer un fichier}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily create nom\+\_\+fichier permissions}
+\item Exemple \+: {\ttfamily create test.\+txt 644}
+\end{DoxyItemize}
+\item {\bfseries{Créer un répertoire}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily mkdir nom\+\_\+repertoire permissions}
+\item Exemple \+: {\ttfamily mkdir documents 755}
+\end{DoxyItemize}
+\item {\bfseries{Lister les fichiers}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily ls \mbox{[}chemin\mbox{]}}
+\item Exemple \+: {\ttfamily ls} {\ttfamily ls /documents}
+\end{DoxyItemize}
+\item {\bfseries{Changer de répertoire}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily cd chemin}
+\item Exemples \+:
+\begin{DoxyItemize}
+\item {\ttfamily cd documents} (accéder au sous-\/répertoire)
+\item {\ttfamily cd ..} (retourner au répertoire parent)
+\item {\ttfamily cd /} (retourner à la racine)
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{Copier un fichier}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily copy source destination}
+\item Exemple \+: {\ttfamily copy test.\+txt copie.\+txt}
+\end{DoxyItemize}
+\item {\bfseries{Déplacer un fichier}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily move source destination}
+\item Exemple \+: {\ttfamily move test.\+txt documents/test.\+txt}
+\end{DoxyItemize}
+\item {\bfseries{Supprimer un fichier}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily rm \mbox{[}-\/r\mbox{]} chemin\+\_\+fichier}
+\item Exemple \+: {\ttfamily rm test.\+txt} {\ttfamily rm -\/r documents}
+\end{DoxyItemize}
+\item {\bfseries{Modifier les permissions}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily chmod nom\+\_\+fichier permissions}
+\item Exemple \+: {\ttfamily chmod test.\+txt 644}
+\end{DoxyItemize}
+\item {\bfseries{Ouvrir un fichier}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily open nom\+\_\+fichier mode}
+\item Mode \+: "{}r"{} (lecture) ou "{}w"{} (écriture)
+\item Exemple \+: {\ttfamily open test.\+txt r}
+\end{DoxyItemize}
+\item {\bfseries{Fermer un fichier}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily close nom\+\_\+fichier}
+\item Exemple \+: {\ttfamily close test.\+txt}
+\end{DoxyItemize}
+\item {\bfseries{Lire un fichier}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily read nom\+\_\+fichier}
+\item Exemple \+: {\ttfamily read test.\+txt}
+\end{DoxyItemize}
+\item {\bfseries{Écrire dans un fichier}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily write nom\+\_\+fichier contenu}
+\item Exemple \+: {\ttfamily write test.\+txt “\+Hello, World!”}
+\end{DoxyItemize}
+\item {\bfseries{Créer un lien dur}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily ln source nom\+\_\+lien}
+\item Exemple \+: {\ttfamily ln test.\+txt lien\+\_\+test}
+\end{DoxyItemize}
+\item {\bfseries{Créer un lien symbolique}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily ln -\/s source nom\+\_\+lien}
+\item Exemple \+: {\ttfamily ln -\/s test.\+txt lien\+\_\+symb\+\_\+test}
+\end{DoxyItemize}
+\item {\bfseries{Quitter le programme}}
+\begin{DoxyItemize}
+\item Commande \+: {\ttfamily exit}
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Système de Permissions}{Système de Permissions}}\label{md__r_e_a_d_m_e_autotoc_md3}
+Les permissions suivent le format UNIX standard avec trois chiffres \+:
+\begin{DoxyItemize}
+\item 7 (rwx) \+: Lecture, écriture et exécution
+\item 6 (rw-\/) \+: Lecture et écriture
+\item 5 (r-\/x) \+: Lecture et exécution
+\item 4 (r--) \+: Lecture seule
+\item 3 (-\/wx) \+: Écriture et exécution
+\item 2 (-\/w-\/) \+: Écriture seule
+\item 1 (--x) \+: Exécution seule
+\item 0 (---) \+: Aucune permission
+\end{DoxyItemize}
+
+Permissions courantes \+:
+\begin{DoxyItemize}
+\item 755 \+: Propriétaire (rwx), Autres (r-\/x)
+\item 644 \+: Propriétaire (rw-\/), Autres (r--)
+\item 777 \+: Tous les droits pour tous 
+\end{DoxyItemize}

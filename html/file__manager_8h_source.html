@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Système de fichiers virtuel:  Fichier source de file_manager.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Système de fichiers virtuel
+   </div>
+   <div id="projectbrief">Une implémentation simple d&#39;un système de fichiers</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('file__manager_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">file_manager.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="file__manager_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FILE_MANAGER_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FILE_MANAGER_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// Simulation du système de fichiers</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="file__manager_8h.html#a2c5eecb22513a88c24ae5831a3265e54">    5</a></span><span class="preprocessor">#define MAX_FILES 100</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="file__manager_8h.html#a9eb6992d76f02128388ae95c0415604a">    6</a></span><span class="preprocessor">#define MAX_PATH_LENGTH 256</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="file__manager_8h.html#a0c397a708cec89c74029582574516b30">    7</a></span><span class="preprocessor">#define MAX_NAME_LENGTH 50</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">    9</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a">   10</a></span>    <a class="code hl_enumvalue" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a">FILE_TYPE</a>,</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209">   11</a></span>    <a class="code hl_enumvalue" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209">DIRECTORY_TYPE</a></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>} <a class="code hl_enumeration" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a>;</div>
+</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// Définition des modes d&#39;ouverture de fichier</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="file__manager_8h.html#a01a82af4b478b1d490bf495e26c319d8">   15</a></span><span class="preprocessor">#define FILE_MODE_READ  1</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="file__manager_8h.html#a38868be632c78d78cffed793136025df">   16</a></span><span class="preprocessor">#define FILE_MODE_WRITE 2</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="file__manager_8h.html#af7ccacadee1c5118b35c73c97a4a74f3">   17</a></span><span class="preprocessor">#define FILE_MODE_BOTH  3</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="file__manager_8h.html#a032f3618b5ca0ed6e2dc391362dce9eb">   18</a></span><span class="preprocessor">#define FS_FILENAME &quot;filesystem.dat&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define MAX_FILES 100</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define MAX_PATH_LENGTH 256</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define MAX_NAME_LENGTH 50</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="};">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">   50</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_enumvalue" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a">FILE_TYPE</a>,      </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_enumvalue" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209">DIRECTORY_TYPE</a>  </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} <a class="code hl_enumeration" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a>;</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define FILE_MODE_READ  1</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define FILE_MODE_WRITE 2</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#define FILE_MODE_BOTH  3</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define FS_FILENAME &quot;filesystem.dat&quot;</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="};">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="struct_file_node.html">   70</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_file_node.html">FileNode</a> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="struct_file_node.html#a81eb9d28f3c3b61a62baa84867da4c34">   71</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="struct_file_node.html#a81eb9d28f3c3b61a62baa84867da4c34">name</a>[<a class="code hl_define" href="file__manager_8h.html#a0c397a708cec89c74029582574516b30">MAX_NAME_LENGTH</a>];     </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="struct_file_node.html#a9129c4a297476733349640040bd389a7">   72</a></span>    <a class="code hl_enumeration" href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a> <a class="code hl_variable" href="struct_file_node.html#a9129c4a297476733349640040bd389a7">type</a>;                  </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="struct_file_node.html#a69a0970c579646e144d85e6f34e82727">   73</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_file_node.html#a69a0970c579646e144d85e6f34e82727">permissions</a>;                </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="struct_file_node.html#af024063545b6e16d9cc5bf4008653e9b">   74</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_file_node.html#af024063545b6e16d9cc5bf4008653e9b">size</a>;                       </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="struct_file_node.html#afdf86230398d4c4e1cbb4f747ea4b011">   75</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_file_node.html">FileNode</a>* <a class="code hl_variable" href="struct_file_node.html#afdf86230398d4c4e1cbb4f747ea4b011">parent</a>;        </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="struct_file_node.html#a02ce2a64682a3be2d042c50b0cf67cb6">   76</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_file_node.html">FileNode</a>* <a class="code hl_variable" href="struct_file_node.html#a02ce2a64682a3be2d042c50b0cf67cb6">children</a>[<a class="code hl_define" href="file__manager_8h.html#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>]; </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="struct_file_node.html#a674df53502c5436a31a80e53c94f3f9f">   77</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_file_node.html#a674df53502c5436a31a80e53c94f3f9f">child_count</a>;                </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="struct_file_node.html#affcd5663b22e735143168dac888acbfa">   78</a></span>    <span class="keywordtype">char</span>* <a class="code hl_variable" href="struct_file_node.html#affcd5663b22e735143168dac888acbfa">content</a>;                  </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="struct_file_node.html#a1a737831526a202882dd44a9ffdf5da6">   79</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_file_node.html#a1a737831526a202882dd44a9ffdf5da6">is_open</a>;                    </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="struct_file_node.html#a0bf5e3473c5146e3d989d7b546d84617">   80</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_file_node.html#a0bf5e3473c5146e3d989d7b546d84617">ref_count</a>;                  </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="struct_file_node.html#a9ed9c04237582765a6c87d4b2c0cf6f3">   81</a></span>    <span class="keywordtype">char</span>* <a class="code hl_variable" href="struct_file_node.html#a9ed9c04237582765a6c87d4b2c0cf6f3">symlink_target</a>;           </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="struct_file_node.html#ade10381f1c95a75ec997f113378b6639">   82</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_file_node.html#ade10381f1c95a75ec997f113378b6639">open_mode</a>;                  </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="file__manager_8h.html#afe3b5f19958a1f749fa757c5a69601a2">   83</a></span>} <a class="code hl_struct" href="struct_file_node.html">FileNode</a>;</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_file_node.html">FileNode</a>* <a class="code hl_variable" href="file__manager_8c.html#a5ade22bbc39aee8b1a2f3bc1f5f4ff27">root_directory</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_file_node.html">FileNode</a>* <a class="code hl_variable" href="file__manager_8c.html#a68ff57a1cc47283533fc009cc37a895d">current_directory</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#ae5cb914a15766851fb08fc082e0706e1">create_file</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_file_node.html#a69a0970c579646e144d85e6f34e82727">permissions</a>);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#ab22d2920e71af9a63143f8959624ada7">create_directory</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_file_node.html#a69a0970c579646e144d85e6f34e82727">permissions</a>);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keywordtype">void</span> <a class="code hl_function" href="file__manager_8h.html#a779f02554faba6a4360b195f8e294246">list_files</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#a53d5c856a4d9db454276915b768d445a">copy_file</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* source, <span class="keyword">const</span> <span class="keywordtype">char</span>* destination);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#a8a2b35f39891d7ffa8e3db575a8df228">move_file</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* source, <span class="keyword">const</span> <span class="keywordtype">char</span>* destination);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#ac0daef4f09b7330b4dc70425fbcc3d53">delete_file</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#ab9ea7bebad3e5468386e809e394f50cf">set_permissions</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_file_node.html#a69a0970c579646e144d85e6f34e82727">permissions</a>);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#aca58047d8f2692f18e62862a64ab1caf">change_directory</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><a class="code hl_struct" href="struct_file_node.html">FileNode</a>* <a class="code hl_function" href="file__manager_8h.html#a26d361701ad7dd7bc64f50b35ad89e21">get_file_by_path</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#ad64ced3f6f04c9a3dfda43d8f4891897">open_file</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keyword">const</span> <span class="keywordtype">char</span>* mode);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#a614cf84ed84443e4838db7d31d27f0ac">close_file</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#a66d42bff955508c02923a1594b699d22">read_file</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keywordtype">char</span>* buffer, <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_file_node.html#af024063545b6e16d9cc5bf4008653e9b">size</a>);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#a4a5f92e121ced273d5862cc2b1fce146">write_file</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_variable" href="struct_file_node.html#affcd5663b22e735143168dac888acbfa">content</a>);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#a28028fb7b248b40d13476bac25b5690d">create_hard_link</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* target, <span class="keyword">const</span> <span class="keywordtype">char</span>* link_name);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#af16add08d0b43af6aa076f0870439c16">create_symbolic_link</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* target, <span class="keyword">const</span> <span class="keywordtype">char</span>* link_name);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="keywordtype">void</span> <a class="code hl_function" href="file__manager_8h.html#a31fa5fec2e8ef080df2ebe3c444ef358">init_file_system</a>();</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="keywordtype">void</span> <a class="code hl_function" href="file__manager_8h.html#a6fd6fa9d4bce870a628123aa5da1eeab">save_file_system</a>();</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keywordtype">void</span> <a class="code hl_function" href="file__manager_8h.html#ade7fcdc72941c0e6cdec7bd6d8e67581">close_file_system</a>();</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="keywordtype">int</span> <a class="code hl_function" href="file__manager_8h.html#a4351f6d9769bae6e25c1140c94abf227">load_file_system</a>();</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="keywordtype">void</span> <a class="code hl_function" href="file__manager_8h.html#a2f04d4017a5fdb44b0cb34e012c97891">handle_command</a>();</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="keywordtype">char</span>* <a class="code hl_function" href="file__manager_8h.html#a4180aa65e5de8084a41478de6c2b47e1">get_current_path</a>();</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="preprocessor">#endif </span><span class="comment">// FILE_MANAGER_H</span></div>
+<div class="ttc" id="afile__manager_8c_html_a5ade22bbc39aee8b1a2f3bc1f5f4ff27"><div class="ttname"><a href="file__manager_8c.html#a5ade22bbc39aee8b1a2f3bc1f5f4ff27">root_directory</a></div><div class="ttdeci">FileNode * root_directory</div><div class="ttdoc">Inclusions des bibliothèques nécessaires.</div><div class="ttdef"><b>Definition</b> file_manager.c:33</div></div>
+<div class="ttc" id="afile__manager_8c_html_a68ff57a1cc47283533fc009cc37a895d"><div class="ttname"><a href="file__manager_8c.html#a68ff57a1cc47283533fc009cc37a895d">current_directory</a></div><div class="ttdeci">FileNode * current_directory</div><div class="ttdoc">Répertoire de travail actuel.</div><div class="ttdef"><b>Definition</b> file_manager.c:36</div></div>
+<div class="ttc" id="afile__manager_8h_html_a0c397a708cec89c74029582574516b30"><div class="ttname"><a href="file__manager_8h.html#a0c397a708cec89c74029582574516b30">MAX_NAME_LENGTH</a></div><div class="ttdeci">#define MAX_NAME_LENGTH</div><div class="ttdoc">Longueur maximale d&#39;un nom de fichier.</div><div class="ttdef"><b>Definition</b> file_manager.h:7</div></div>
+<div class="ttc" id="afile__manager_8h_html_a26d361701ad7dd7bc64f50b35ad89e21"><div class="ttname"><a href="file__manager_8h.html#a26d361701ad7dd7bc64f50b35ad89e21">get_file_by_path</a></div><div class="ttdeci">FileNode * get_file_by_path(const char *path)</div><div class="ttdoc">Recherche un fichier par son chemin.</div><div class="ttdef"><b>Definition</b> file_manager.c:205</div></div>
+<div class="ttc" id="afile__manager_8h_html_a28028fb7b248b40d13476bac25b5690d"><div class="ttname"><a href="file__manager_8h.html#a28028fb7b248b40d13476bac25b5690d">create_hard_link</a></div><div class="ttdeci">int create_hard_link(const char *target, const char *link_name)</div><div class="ttdoc">Crée un lien dur.</div><div class="ttdef"><b>Definition</b> file_manager.c:972</div></div>
+<div class="ttc" id="afile__manager_8h_html_a2c5eecb22513a88c24ae5831a3265e54"><div class="ttname"><a href="file__manager_8h.html#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a></div><div class="ttdeci">#define MAX_FILES</div><div class="ttdoc">Nombre maximum de fichiers par répertoire.</div><div class="ttdef"><b>Definition</b> file_manager.h:5</div></div>
+<div class="ttc" id="afile__manager_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3"><div class="ttname"><a href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a></div><div class="ttdeci">FileType</div><div class="ttdef"><b>Definition</b> file_manager.h:9</div></div>
+<div class="ttc" id="afile__manager_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a"><div class="ttname"><a href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a">FILE_TYPE</a></div><div class="ttdeci">@ FILE_TYPE</div><div class="ttdef"><b>Definition</b> file_manager.h:10</div></div>
+<div class="ttc" id="afile__manager_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209"><div class="ttname"><a href="file__manager_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209">DIRECTORY_TYPE</a></div><div class="ttdeci">@ DIRECTORY_TYPE</div><div class="ttdef"><b>Definition</b> file_manager.h:11</div></div>
+<div class="ttc" id="afile__manager_8h_html_a2f04d4017a5fdb44b0cb34e012c97891"><div class="ttname"><a href="file__manager_8h.html#a2f04d4017a5fdb44b0cb34e012c97891">handle_command</a></div><div class="ttdeci">void handle_command()</div><div class="ttdoc">Gère l&#39;interface en ligne de commande.</div><div class="ttdef"><b>Definition</b> file_manager.c:1032</div></div>
+<div class="ttc" id="afile__manager_8h_html_a31fa5fec2e8ef080df2ebe3c444ef358"><div class="ttname"><a href="file__manager_8h.html#a31fa5fec2e8ef080df2ebe3c444ef358">init_file_system</a></div><div class="ttdeci">void init_file_system()</div><div class="ttdoc">Initialise le système de fichiers.</div><div class="ttdef"><b>Definition</b> file_manager.c:48</div></div>
+<div class="ttc" id="afile__manager_8h_html_a4180aa65e5de8084a41478de6c2b47e1"><div class="ttname"><a href="file__manager_8h.html#a4180aa65e5de8084a41478de6c2b47e1">get_current_path</a></div><div class="ttdeci">char * get_current_path()</div><div class="ttdoc">Obtient le chemin absolu du répertoire courant.</div><div class="ttdef"><b>Definition</b> file_manager.c:938</div></div>
+<div class="ttc" id="afile__manager_8h_html_a4351f6d9769bae6e25c1140c94abf227"><div class="ttname"><a href="file__manager_8h.html#a4351f6d9769bae6e25c1140c94abf227">load_file_system</a></div><div class="ttdeci">int load_file_system()</div><div class="ttdoc">Charge l&#39;état du système de fichiers.</div><div class="ttdef"><b>Definition</b> file_manager.c:164</div></div>
+<div class="ttc" id="afile__manager_8h_html_a4a5f92e121ced273d5862cc2b1fce146"><div class="ttname"><a href="file__manager_8h.html#a4a5f92e121ced273d5862cc2b1fce146">write_file</a></div><div class="ttdeci">int write_file(const char *path, const char *content)</div><div class="ttdoc">Écrit dans un fichier.</div><div class="ttdef"><b>Definition</b> file_manager.c:869</div></div>
+<div class="ttc" id="afile__manager_8h_html_a53d5c856a4d9db454276915b768d445a"><div class="ttname"><a href="file__manager_8h.html#a53d5c856a4d9db454276915b768d445a">copy_file</a></div><div class="ttdeci">int copy_file(const char *source, const char *destination)</div><div class="ttdoc">Copie un fichier.</div><div class="ttdef"><b>Definition</b> file_manager.c:480</div></div>
+<div class="ttc" id="afile__manager_8h_html_a614cf84ed84443e4838db7d31d27f0ac"><div class="ttname"><a href="file__manager_8h.html#a614cf84ed84443e4838db7d31d27f0ac">close_file</a></div><div class="ttdeci">int close_file(const char *path)</div><div class="ttdoc">Ferme un fichier.</div><div class="ttdef"><b>Definition</b> file_manager.c:909</div></div>
+<div class="ttc" id="afile__manager_8h_html_a66d42bff955508c02923a1594b699d22"><div class="ttname"><a href="file__manager_8h.html#a66d42bff955508c02923a1594b699d22">read_file</a></div><div class="ttdeci">int read_file(const char *path, char *buffer, int size)</div><div class="ttdoc">Lit le contenu d&#39;un fichier.</div><div class="ttdef"><b>Definition</b> file_manager.c:825</div></div>
+<div class="ttc" id="afile__manager_8h_html_a6fd6fa9d4bce870a628123aa5da1eeab"><div class="ttname"><a href="file__manager_8h.html#a6fd6fa9d4bce870a628123aa5da1eeab">save_file_system</a></div><div class="ttdeci">void save_file_system()</div><div class="ttdoc">Sauvegarde l&#39;état du système de fichiers.</div><div class="ttdef"><b>Definition</b> file_manager.c:111</div></div>
+<div class="ttc" id="afile__manager_8h_html_a779f02554faba6a4360b195f8e294246"><div class="ttname"><a href="file__manager_8h.html#a779f02554faba6a4360b195f8e294246">list_files</a></div><div class="ttdeci">void list_files(const char *path)</div><div class="ttdoc">Liste le contenu d&#39;un répertoire.</div><div class="ttdef"><b>Definition</b> file_manager.c:372</div></div>
+<div class="ttc" id="afile__manager_8h_html_a8a2b35f39891d7ffa8e3db575a8df228"><div class="ttname"><a href="file__manager_8h.html#a8a2b35f39891d7ffa8e3db575a8df228">move_file</a></div><div class="ttdeci">int move_file(const char *source, const char *destination)</div><div class="ttdoc">Déplace un fichier.</div><div class="ttdef"><b>Definition</b> file_manager.c:546</div></div>
+<div class="ttc" id="afile__manager_8h_html_ab22d2920e71af9a63143f8959624ada7"><div class="ttname"><a href="file__manager_8h.html#ab22d2920e71af9a63143f8959624ada7">create_directory</a></div><div class="ttdeci">int create_directory(const char *path, int permissions)</div><div class="ttdoc">Crée un nouveau répertoire.</div><div class="ttdef"><b>Definition</b> file_manager.c:324</div></div>
+<div class="ttc" id="afile__manager_8h_html_ab9ea7bebad3e5468386e809e394f50cf"><div class="ttname"><a href="file__manager_8h.html#ab9ea7bebad3e5468386e809e394f50cf">set_permissions</a></div><div class="ttdeci">int set_permissions(const char *path, int permissions)</div><div class="ttdoc">Modifie les permissions d&#39;un fichier.</div><div class="ttdef"><b>Definition</b> file_manager.c:711</div></div>
+<div class="ttc" id="afile__manager_8h_html_ac0daef4f09b7330b4dc70425fbcc3d53"><div class="ttname"><a href="file__manager_8h.html#ac0daef4f09b7330b4dc70425fbcc3d53">delete_file</a></div><div class="ttdeci">int delete_file(const char *path)</div><div class="ttdoc">Supprime un fichier ou répertoire.</div><div class="ttdef"><b>Definition</b> file_manager.c:640</div></div>
+<div class="ttc" id="afile__manager_8h_html_aca58047d8f2692f18e62862a64ab1caf"><div class="ttname"><a href="file__manager_8h.html#aca58047d8f2692f18e62862a64ab1caf">change_directory</a></div><div class="ttdeci">int change_directory(const char *path)</div><div class="ttdoc">Change le répertoire courant.</div><div class="ttdef"><b>Definition</b> file_manager.c:416</div></div>
+<div class="ttc" id="afile__manager_8h_html_ad64ced3f6f04c9a3dfda43d8f4891897"><div class="ttname"><a href="file__manager_8h.html#ad64ced3f6f04c9a3dfda43d8f4891897">open_file</a></div><div class="ttdeci">int open_file(const char *path, const char *mode)</div><div class="ttdoc">Ouvre un fichier.</div><div class="ttdef"><b>Definition</b> file_manager.c:767</div></div>
+<div class="ttc" id="afile__manager_8h_html_ade7fcdc72941c0e6cdec7bd6d8e67581"><div class="ttname"><a href="file__manager_8h.html#ade7fcdc72941c0e6cdec7bd6d8e67581">close_file_system</a></div><div class="ttdeci">void close_file_system()</div><div class="ttdoc">Ferme proprement le système de fichiers.</div><div class="ttdef"><b>Definition</b> file_manager.c:186</div></div>
+<div class="ttc" id="afile__manager_8h_html_ae5cb914a15766851fb08fc082e0706e1"><div class="ttname"><a href="file__manager_8h.html#ae5cb914a15766851fb08fc082e0706e1">create_file</a></div><div class="ttdeci">int create_file(const char *path, int permissions)</div><div class="ttdoc">Crée un nouveau fichier.</div><div class="ttdef"><b>Definition</b> file_manager.c:271</div></div>
+<div class="ttc" id="afile__manager_8h_html_af16add08d0b43af6aa076f0870439c16"><div class="ttname"><a href="file__manager_8h.html#af16add08d0b43af6aa076f0870439c16">create_symbolic_link</a></div><div class="ttdeci">int create_symbolic_link(const char *target, const char *link_name)</div><div class="ttdoc">Crée un lien symbolique.</div><div class="ttdef"><b>Definition</b> file_manager.c:1004</div></div>
+<div class="ttc" id="astruct_file_node_html"><div class="ttname"><a href="struct_file_node.html">FileNode</a></div><div class="ttdoc">Structure représentant un nœud dans le système de fichiers.</div><div class="ttdef"><b>Definition</b> file_manager.h:70</div></div>
+<div class="ttc" id="astruct_file_node_html_a02ce2a64682a3be2d042c50b0cf67cb6"><div class="ttname"><a href="struct_file_node.html#a02ce2a64682a3be2d042c50b0cf67cb6">FileNode::children</a></div><div class="ttdeci">struct FileNode * children[MAX_FILES]</div><div class="ttdef"><b>Definition</b> file_manager.h:76</div></div>
+<div class="ttc" id="astruct_file_node_html_a0bf5e3473c5146e3d989d7b546d84617"><div class="ttname"><a href="struct_file_node.html#a0bf5e3473c5146e3d989d7b546d84617">FileNode::ref_count</a></div><div class="ttdeci">int ref_count</div><div class="ttdef"><b>Definition</b> file_manager.h:80</div></div>
+<div class="ttc" id="astruct_file_node_html_a1a737831526a202882dd44a9ffdf5da6"><div class="ttname"><a href="struct_file_node.html#a1a737831526a202882dd44a9ffdf5da6">FileNode::is_open</a></div><div class="ttdeci">int is_open</div><div class="ttdef"><b>Definition</b> file_manager.h:79</div></div>
+<div class="ttc" id="astruct_file_node_html_a674df53502c5436a31a80e53c94f3f9f"><div class="ttname"><a href="struct_file_node.html#a674df53502c5436a31a80e53c94f3f9f">FileNode::child_count</a></div><div class="ttdeci">int child_count</div><div class="ttdef"><b>Definition</b> file_manager.h:77</div></div>
+<div class="ttc" id="astruct_file_node_html_a69a0970c579646e144d85e6f34e82727"><div class="ttname"><a href="struct_file_node.html#a69a0970c579646e144d85e6f34e82727">FileNode::permissions</a></div><div class="ttdeci">int permissions</div><div class="ttdef"><b>Definition</b> file_manager.h:73</div></div>
+<div class="ttc" id="astruct_file_node_html_a81eb9d28f3c3b61a62baa84867da4c34"><div class="ttname"><a href="struct_file_node.html#a81eb9d28f3c3b61a62baa84867da4c34">FileNode::name</a></div><div class="ttdeci">char name[MAX_NAME_LENGTH]</div><div class="ttdef"><b>Definition</b> file_manager.h:71</div></div>
+<div class="ttc" id="astruct_file_node_html_a9129c4a297476733349640040bd389a7"><div class="ttname"><a href="struct_file_node.html#a9129c4a297476733349640040bd389a7">FileNode::type</a></div><div class="ttdeci">FileType type</div><div class="ttdef"><b>Definition</b> file_manager.h:72</div></div>
+<div class="ttc" id="astruct_file_node_html_a9ed9c04237582765a6c87d4b2c0cf6f3"><div class="ttname"><a href="struct_file_node.html#a9ed9c04237582765a6c87d4b2c0cf6f3">FileNode::symlink_target</a></div><div class="ttdeci">char * symlink_target</div><div class="ttdef"><b>Definition</b> file_manager.h:81</div></div>
+<div class="ttc" id="astruct_file_node_html_ade10381f1c95a75ec997f113378b6639"><div class="ttname"><a href="struct_file_node.html#ade10381f1c95a75ec997f113378b6639">FileNode::open_mode</a></div><div class="ttdeci">int open_mode</div><div class="ttdef"><b>Definition</b> file_manager.h:82</div></div>
+<div class="ttc" id="astruct_file_node_html_af024063545b6e16d9cc5bf4008653e9b"><div class="ttname"><a href="struct_file_node.html#af024063545b6e16d9cc5bf4008653e9b">FileNode::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition</b> file_manager.h:74</div></div>
+<div class="ttc" id="astruct_file_node_html_afdf86230398d4c4e1cbb4f747ea4b011"><div class="ttname"><a href="struct_file_node.html#afdf86230398d4c4e1cbb4f747ea4b011">FileNode::parent</a></div><div class="ttdeci">struct FileNode * parent</div><div class="ttdef"><b>Definition</b> file_manager.h:75</div></div>
+<div class="ttc" id="astruct_file_node_html_affcd5663b22e735143168dac888acbfa"><div class="ttname"><a href="struct_file_node.html#affcd5663b22e735143168dac888acbfa">FileNode::content</a></div><div class="ttdeci">char * content</div><div class="ttdef"><b>Definition</b> file_manager.h:78</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="file__manager_8h.html">file_manager.h</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

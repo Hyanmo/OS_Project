@@ -1,0 +1,123 @@
+\doxysection{Référence de la structure File\+Node}
+\hypertarget{struct_file_node}{}\label{struct_file_node}\index{FileNode@{FileNode}}
+
+
+Structure représentant un nœud dans le système de fichiers.  
+
+
+
+
+{\ttfamily \#include $<$file\+\_\+manager.\+h$>$}
+
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{struct_file_node_a81eb9d28f3c3b61a62baa84867da4c34}{name}} \mbox{[}\mbox{\hyperlink{file__manager_8h_a0c397a708cec89c74029582574516b30}{MAX\+\_\+\+NAME\+\_\+\+LENGTH}}\mbox{]}
+\item 
+\mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}{File\+Type}} \mbox{\hyperlink{struct_file_node_a9129c4a297476733349640040bd389a7}{type}}
+\item 
+int \mbox{\hyperlink{struct_file_node_a69a0970c579646e144d85e6f34e82727}{permissions}}
+\item 
+int \mbox{\hyperlink{struct_file_node_af024063545b6e16d9cc5bf4008653e9b}{size}}
+\item 
+struct \mbox{\hyperlink{struct_file_node}{File\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_file_node_afdf86230398d4c4e1cbb4f747ea4b011}{parent}}
+\item 
+struct \mbox{\hyperlink{struct_file_node}{File\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_file_node_a02ce2a64682a3be2d042c50b0cf67cb6}{children}} \mbox{[}\mbox{\hyperlink{file__manager_8h_a2c5eecb22513a88c24ae5831a3265e54}{MAX\+\_\+\+FILES}}\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_file_node_a674df53502c5436a31a80e53c94f3f9f}{child\+\_\+count}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_file_node_affcd5663b22e735143168dac888acbfa}{content}}
+\item 
+int \mbox{\hyperlink{struct_file_node_a1a737831526a202882dd44a9ffdf5da6}{is\+\_\+open}}
+\item 
+int \mbox{\hyperlink{struct_file_node_a0bf5e3473c5146e3d989d7b546d84617}{ref\+\_\+count}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_file_node_a9ed9c04237582765a6c87d4b2c0cf6f3}{symlink\+\_\+target}}
+\item 
+int \mbox{\hyperlink{struct_file_node_ade10381f1c95a75ec997f113378b6639}{open\+\_\+mode}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Structure représentant un nœud dans le système de fichiers. 
+
+Cette structure est utilisée pour représenter à la fois les fichiers et les répertoires. Elle contient toutes les métadonnées nécessaires ainsi que les liens vers d\textquotesingle{}autres nœuds. 
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{struct_file_node_a674df53502c5436a31a80e53c94f3f9f}\index{FileNode@{FileNode}!child\_count@{child\_count}}
+\index{child\_count@{child\_count}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{child\_count}{child\_count}}
+{\footnotesize\ttfamily \label{struct_file_node_a674df53502c5436a31a80e53c94f3f9f} 
+int File\+Node\+::child\+\_\+count}
+
+Nombre d\textquotesingle{}enfants dans le répertoire \Hypertarget{struct_file_node_a02ce2a64682a3be2d042c50b0cf67cb6}\index{FileNode@{FileNode}!children@{children}}
+\index{children@{children}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{children}{children}}
+{\footnotesize\ttfamily \label{struct_file_node_a02ce2a64682a3be2d042c50b0cf67cb6} 
+struct \mbox{\hyperlink{struct_file_node}{File\+Node}}\texorpdfstring{$\ast$}{*} File\+Node\+::children\mbox{[}\mbox{\hyperlink{file__manager_8h_a2c5eecb22513a88c24ae5831a3265e54}{MAX\+\_\+\+FILES}}\mbox{]}}
+
+Tableau des enfants (pour les répertoires) \Hypertarget{struct_file_node_affcd5663b22e735143168dac888acbfa}\index{FileNode@{FileNode}!content@{content}}
+\index{content@{content}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{content}{content}}
+{\footnotesize\ttfamily \label{struct_file_node_affcd5663b22e735143168dac888acbfa} 
+char\texorpdfstring{$\ast$}{*} File\+Node\+::content}
+
+Contenu du fichier \Hypertarget{struct_file_node_a1a737831526a202882dd44a9ffdf5da6}\index{FileNode@{FileNode}!is\_open@{is\_open}}
+\index{is\_open@{is\_open}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{is\_open}{is\_open}}
+{\footnotesize\ttfamily \label{struct_file_node_a1a737831526a202882dd44a9ffdf5da6} 
+int File\+Node\+::is\+\_\+open}
+
+État du fichier (1=ouvert, 0=fermé) \Hypertarget{struct_file_node_a81eb9d28f3c3b61a62baa84867da4c34}\index{FileNode@{FileNode}!name@{name}}
+\index{name@{name}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{struct_file_node_a81eb9d28f3c3b61a62baa84867da4c34} 
+char File\+Node\+::name\mbox{[}\mbox{\hyperlink{file__manager_8h_a0c397a708cec89c74029582574516b30}{MAX\+\_\+\+NAME\+\_\+\+LENGTH}}\mbox{]}}
+
+Nom du fichier ou répertoire \Hypertarget{struct_file_node_ade10381f1c95a75ec997f113378b6639}\index{FileNode@{FileNode}!open\_mode@{open\_mode}}
+\index{open\_mode@{open\_mode}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{open\_mode}{open\_mode}}
+{\footnotesize\ttfamily \label{struct_file_node_ade10381f1c95a75ec997f113378b6639} 
+int File\+Node\+::open\+\_\+mode}
+
+Mode d\textquotesingle{}ouverture actuel \Hypertarget{struct_file_node_afdf86230398d4c4e1cbb4f747ea4b011}\index{FileNode@{FileNode}!parent@{parent}}
+\index{parent@{parent}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily \label{struct_file_node_afdf86230398d4c4e1cbb4f747ea4b011} 
+struct \mbox{\hyperlink{struct_file_node}{File\+Node}}\texorpdfstring{$\ast$}{*} File\+Node\+::parent}
+
+Pointeur vers le répertoire parent \Hypertarget{struct_file_node_a69a0970c579646e144d85e6f34e82727}\index{FileNode@{FileNode}!permissions@{permissions}}
+\index{permissions@{permissions}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{permissions}{permissions}}
+{\footnotesize\ttfamily \label{struct_file_node_a69a0970c579646e144d85e6f34e82727} 
+int File\+Node\+::permissions}
+
+Permissions (format octal, ex\+: 644) \Hypertarget{struct_file_node_a0bf5e3473c5146e3d989d7b546d84617}\index{FileNode@{FileNode}!ref\_count@{ref\_count}}
+\index{ref\_count@{ref\_count}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{ref\_count}{ref\_count}}
+{\footnotesize\ttfamily \label{struct_file_node_a0bf5e3473c5146e3d989d7b546d84617} 
+int File\+Node\+::ref\+\_\+count}
+
+Nombre de références (pour les liens durs) \Hypertarget{struct_file_node_af024063545b6e16d9cc5bf4008653e9b}\index{FileNode@{FileNode}!size@{size}}
+\index{size@{size}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily \label{struct_file_node_af024063545b6e16d9cc5bf4008653e9b} 
+int File\+Node\+::size}
+
+Taille du fichier en octets \Hypertarget{struct_file_node_a9ed9c04237582765a6c87d4b2c0cf6f3}\index{FileNode@{FileNode}!symlink\_target@{symlink\_target}}
+\index{symlink\_target@{symlink\_target}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{symlink\_target}{symlink\_target}}
+{\footnotesize\ttfamily \label{struct_file_node_a9ed9c04237582765a6c87d4b2c0cf6f3} 
+char\texorpdfstring{$\ast$}{*} File\+Node\+::symlink\+\_\+target}
+
+Cible du lien symbolique \Hypertarget{struct_file_node_a9129c4a297476733349640040bd389a7}\index{FileNode@{FileNode}!type@{type}}
+\index{type@{type}!FileNode@{FileNode}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{struct_file_node_a9129c4a297476733349640040bd389a7} 
+\mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}{File\+Type}} File\+Node\+::type}
+
+Type (FILE\+\_\+\+TYPE ou DIRECTORY\+\_\+\+TYPE) 
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{file__manager_8h}{file\+\_\+manager.\+h}}\end{DoxyCompactItemize}

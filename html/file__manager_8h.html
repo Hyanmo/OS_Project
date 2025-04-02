@@ -1,0 +1,1454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Système de fichiers virtuel: Référence du fichier file_manager.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Système de fichiers virtuel
+   </div>
+   <div id="projectbrief">Une implémentation simple d&#39;un système de fichiers</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('file__manager_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#enum-members">Énumérations</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier file_manager.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interface du système de fichiers virtuel.  
+<a href="#details">Plus de détails...</a></p>
+
+<p><a href="file__manager_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_file_node.html">FileNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure représentant un nœud dans le système de fichiers.  <a href="struct_file_node.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a2c5eecb22513a88c24ae5831a3265e54" id="r_a2c5eecb22513a88c24ae5831a3265e54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>&#160;&#160;&#160;100</td></tr>
+<tr class="memdesc:a2c5eecb22513a88c24ae5831a3265e54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre maximum de fichiers par répertoire.  <br /></td></tr>
+<tr class="separator:a2c5eecb22513a88c24ae5831a3265e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb6992d76f02128388ae95c0415604a" id="r_a9eb6992d76f02128388ae95c0415604a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9eb6992d76f02128388ae95c0415604a">MAX_PATH_LENGTH</a>&#160;&#160;&#160;256</td></tr>
+<tr class="memdesc:a9eb6992d76f02128388ae95c0415604a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Longueur maximale d'un chemin.  <br /></td></tr>
+<tr class="separator:a9eb6992d76f02128388ae95c0415604a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c397a708cec89c74029582574516b30" id="r_a0c397a708cec89c74029582574516b30"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c397a708cec89c74029582574516b30">MAX_NAME_LENGTH</a>&#160;&#160;&#160;50</td></tr>
+<tr class="memdesc:a0c397a708cec89c74029582574516b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Longueur maximale d'un nom de fichier.  <br /></td></tr>
+<tr class="separator:a0c397a708cec89c74029582574516b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a82af4b478b1d490bf495e26c319d8" id="r_a01a82af4b478b1d490bf495e26c319d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01a82af4b478b1d490bf495e26c319d8">FILE_MODE_READ</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a01a82af4b478b1d490bf495e26c319d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mode lecture seule.  <br /></td></tr>
+<tr class="separator:a01a82af4b478b1d490bf495e26c319d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38868be632c78d78cffed793136025df" id="r_a38868be632c78d78cffed793136025df"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38868be632c78d78cffed793136025df">FILE_MODE_WRITE</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:a38868be632c78d78cffed793136025df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mode écriture seule.  <br /></td></tr>
+<tr class="separator:a38868be632c78d78cffed793136025df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7ccacadee1c5118b35c73c97a4a74f3" id="r_af7ccacadee1c5118b35c73c97a4a74f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7ccacadee1c5118b35c73c97a4a74f3">FILE_MODE_BOTH</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memdesc:af7ccacadee1c5118b35c73c97a4a74f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mode lecture et écriture.  <br /></td></tr>
+<tr class="separator:af7ccacadee1c5118b35c73c97a4a74f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a032f3618b5ca0ed6e2dc391362dce9eb" id="r_a032f3618b5ca0ed6e2dc391362dce9eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a032f3618b5ca0ed6e2dc391362dce9eb">FS_FILENAME</a>&#160;&#160;&#160;&quot;filesystem.dat&quot;</td></tr>
+<tr class="memdesc:a032f3618b5ca0ed6e2dc391362dce9eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nom du fichier de stockage persistant.  <br /></td></tr>
+<tr class="separator:a032f3618b5ca0ed6e2dc391362dce9eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c5eecb22513a88c24ae5831a3265e54" id="r_a2c5eecb22513a88c24ae5831a3265e54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>&#160;&#160;&#160;100</td></tr>
+<tr class="memdesc:a2c5eecb22513a88c24ae5831a3265e54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre maximum de fichiers par répertoire.  <br /></td></tr>
+<tr class="separator:a2c5eecb22513a88c24ae5831a3265e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb6992d76f02128388ae95c0415604a" id="r_a9eb6992d76f02128388ae95c0415604a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9eb6992d76f02128388ae95c0415604a">MAX_PATH_LENGTH</a>&#160;&#160;&#160;256</td></tr>
+<tr class="memdesc:a9eb6992d76f02128388ae95c0415604a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Longueur maximale d'un chemin.  <br /></td></tr>
+<tr class="separator:a9eb6992d76f02128388ae95c0415604a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c397a708cec89c74029582574516b30" id="r_a0c397a708cec89c74029582574516b30"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c397a708cec89c74029582574516b30">MAX_NAME_LENGTH</a>&#160;&#160;&#160;50</td></tr>
+<tr class="memdesc:a0c397a708cec89c74029582574516b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Longueur maximale d'un nom de fichier.  <br /></td></tr>
+<tr class="separator:a0c397a708cec89c74029582574516b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a82af4b478b1d490bf495e26c319d8" id="r_a01a82af4b478b1d490bf495e26c319d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01a82af4b478b1d490bf495e26c319d8">FILE_MODE_READ</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a01a82af4b478b1d490bf495e26c319d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mode lecture seule.  <br /></td></tr>
+<tr class="separator:a01a82af4b478b1d490bf495e26c319d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38868be632c78d78cffed793136025df" id="r_a38868be632c78d78cffed793136025df"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38868be632c78d78cffed793136025df">FILE_MODE_WRITE</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:a38868be632c78d78cffed793136025df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mode écriture seule.  <br /></td></tr>
+<tr class="separator:a38868be632c78d78cffed793136025df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7ccacadee1c5118b35c73c97a4a74f3" id="r_af7ccacadee1c5118b35c73c97a4a74f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7ccacadee1c5118b35c73c97a4a74f3">FILE_MODE_BOTH</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memdesc:af7ccacadee1c5118b35c73c97a4a74f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mode lecture et écriture.  <br /></td></tr>
+<tr class="separator:af7ccacadee1c5118b35c73c97a4a74f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a032f3618b5ca0ed6e2dc391362dce9eb" id="r_a032f3618b5ca0ed6e2dc391362dce9eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a032f3618b5ca0ed6e2dc391362dce9eb">FS_FILENAME</a>&#160;&#160;&#160;&quot;filesystem.dat&quot;</td></tr>
+<tr class="memdesc:a032f3618b5ca0ed6e2dc391362dce9eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nom du fichier de stockage persistant.  <br /></td></tr>
+<tr class="separator:a032f3618b5ca0ed6e2dc391362dce9eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:afe3b5f19958a1f749fa757c5a69601a2" id="r_afe3b5f19958a1f749fa757c5a69601a2"><td class="memItemLeft" align="right" valign="top">typedef struct FileNode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe3b5f19958a1f749fa757c5a69601a2">FileNode</a></td></tr>
+<tr class="memdesc:afe3b5f19958a1f749fa757c5a69601a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure représentant un nœud dans le système de fichiers.  <br /></td></tr>
+<tr class="separator:afe3b5f19958a1f749fa757c5a69601a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Énumérations</h2></td></tr>
+<tr class="memitem:a2c794c5c13ab4dd7e65bad031dbe41c3" id="r_a2c794c5c13ab4dd7e65bad031dbe41c3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a> { <a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a">FILE_TYPE</a>
+, <a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209">DIRECTORY_TYPE</a>
+, <a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a">FILE_TYPE</a>
+, <a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209">DIRECTORY_TYPE</a>
+ }</td></tr>
+<tr class="separator:a2c794c5c13ab4dd7e65bad031dbe41c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c794c5c13ab4dd7e65bad031dbe41c3" id="r_a2c794c5c13ab4dd7e65bad031dbe41c3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a> { <a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a">FILE_TYPE</a>
+, <a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209">DIRECTORY_TYPE</a>
+, <a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a">FILE_TYPE</a>
+, <a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209">DIRECTORY_TYPE</a>
+ }</td></tr>
+<tr class="memdesc:a2c794c5c13ab4dd7e65bad031dbe41c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Types de nœuds dans le système de fichiers.  <a href="#a2c794c5c13ab4dd7e65bad031dbe41c3">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2c794c5c13ab4dd7e65bad031dbe41c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ae5cb914a15766851fb08fc082e0706e1" id="r_ae5cb914a15766851fb08fc082e0706e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5cb914a15766851fb08fc082e0706e1">create_file</a> (const char *path, int permissions)</td></tr>
+<tr class="memdesc:ae5cb914a15766851fb08fc082e0706e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée un nouveau fichier.  <br /></td></tr>
+<tr class="separator:ae5cb914a15766851fb08fc082e0706e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab22d2920e71af9a63143f8959624ada7" id="r_ab22d2920e71af9a63143f8959624ada7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab22d2920e71af9a63143f8959624ada7">create_directory</a> (const char *path, int permissions)</td></tr>
+<tr class="memdesc:ab22d2920e71af9a63143f8959624ada7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée un nouveau répertoire.  <br /></td></tr>
+<tr class="separator:ab22d2920e71af9a63143f8959624ada7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a779f02554faba6a4360b195f8e294246" id="r_a779f02554faba6a4360b195f8e294246"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a779f02554faba6a4360b195f8e294246">list_files</a> (const char *path)</td></tr>
+<tr class="memdesc:a779f02554faba6a4360b195f8e294246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liste le contenu d'un répertoire.  <br /></td></tr>
+<tr class="separator:a779f02554faba6a4360b195f8e294246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53d5c856a4d9db454276915b768d445a" id="r_a53d5c856a4d9db454276915b768d445a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53d5c856a4d9db454276915b768d445a">copy_file</a> (const char *source, const char *destination)</td></tr>
+<tr class="memdesc:a53d5c856a4d9db454276915b768d445a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copie un fichier.  <br /></td></tr>
+<tr class="separator:a53d5c856a4d9db454276915b768d445a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2b35f39891d7ffa8e3db575a8df228" id="r_a8a2b35f39891d7ffa8e3db575a8df228"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a2b35f39891d7ffa8e3db575a8df228">move_file</a> (const char *source, const char *destination)</td></tr>
+<tr class="memdesc:a8a2b35f39891d7ffa8e3db575a8df228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Déplace un fichier.  <br /></td></tr>
+<tr class="separator:a8a2b35f39891d7ffa8e3db575a8df228"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0daef4f09b7330b4dc70425fbcc3d53" id="r_ac0daef4f09b7330b4dc70425fbcc3d53"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0daef4f09b7330b4dc70425fbcc3d53">delete_file</a> (const char *path)</td></tr>
+<tr class="memdesc:ac0daef4f09b7330b4dc70425fbcc3d53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime un fichier ou répertoire.  <br /></td></tr>
+<tr class="separator:ac0daef4f09b7330b4dc70425fbcc3d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9ea7bebad3e5468386e809e394f50cf" id="r_ab9ea7bebad3e5468386e809e394f50cf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9ea7bebad3e5468386e809e394f50cf">set_permissions</a> (const char *path, int permissions)</td></tr>
+<tr class="memdesc:ab9ea7bebad3e5468386e809e394f50cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifie les permissions d'un fichier.  <br /></td></tr>
+<tr class="separator:ab9ea7bebad3e5468386e809e394f50cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca58047d8f2692f18e62862a64ab1caf" id="r_aca58047d8f2692f18e62862a64ab1caf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca58047d8f2692f18e62862a64ab1caf">change_directory</a> (const char *path)</td></tr>
+<tr class="memdesc:aca58047d8f2692f18e62862a64ab1caf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change le répertoire courant.  <br /></td></tr>
+<tr class="separator:aca58047d8f2692f18e62862a64ab1caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26d361701ad7dd7bc64f50b35ad89e21" id="r_a26d361701ad7dd7bc64f50b35ad89e21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_file_node.html">FileNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26d361701ad7dd7bc64f50b35ad89e21">get_file_by_path</a> (const char *path)</td></tr>
+<tr class="memdesc:a26d361701ad7dd7bc64f50b35ad89e21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche un fichier par son chemin.  <br /></td></tr>
+<tr class="separator:a26d361701ad7dd7bc64f50b35ad89e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad64ced3f6f04c9a3dfda43d8f4891897" id="r_ad64ced3f6f04c9a3dfda43d8f4891897"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad64ced3f6f04c9a3dfda43d8f4891897">open_file</a> (const char *path, const char *mode)</td></tr>
+<tr class="memdesc:ad64ced3f6f04c9a3dfda43d8f4891897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ouvre un fichier.  <br /></td></tr>
+<tr class="separator:ad64ced3f6f04c9a3dfda43d8f4891897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a614cf84ed84443e4838db7d31d27f0ac" id="r_a614cf84ed84443e4838db7d31d27f0ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a614cf84ed84443e4838db7d31d27f0ac">close_file</a> (const char *path)</td></tr>
+<tr class="memdesc:a614cf84ed84443e4838db7d31d27f0ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ferme un fichier.  <br /></td></tr>
+<tr class="separator:a614cf84ed84443e4838db7d31d27f0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66d42bff955508c02923a1594b699d22" id="r_a66d42bff955508c02923a1594b699d22"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66d42bff955508c02923a1594b699d22">read_file</a> (const char *path, char *buffer, int size)</td></tr>
+<tr class="memdesc:a66d42bff955508c02923a1594b699d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le contenu d'un fichier.  <br /></td></tr>
+<tr class="separator:a66d42bff955508c02923a1594b699d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a5f92e121ced273d5862cc2b1fce146" id="r_a4a5f92e121ced273d5862cc2b1fce146"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a5f92e121ced273d5862cc2b1fce146">write_file</a> (const char *path, const char *content)</td></tr>
+<tr class="memdesc:a4a5f92e121ced273d5862cc2b1fce146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Écrit dans un fichier.  <br /></td></tr>
+<tr class="separator:a4a5f92e121ced273d5862cc2b1fce146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28028fb7b248b40d13476bac25b5690d" id="r_a28028fb7b248b40d13476bac25b5690d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28028fb7b248b40d13476bac25b5690d">create_hard_link</a> (const char *target, const char *link_name)</td></tr>
+<tr class="memdesc:a28028fb7b248b40d13476bac25b5690d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée un lien dur.  <br /></td></tr>
+<tr class="separator:a28028fb7b248b40d13476bac25b5690d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af16add08d0b43af6aa076f0870439c16" id="r_af16add08d0b43af6aa076f0870439c16"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af16add08d0b43af6aa076f0870439c16">create_symbolic_link</a> (const char *target, const char *link_name)</td></tr>
+<tr class="memdesc:af16add08d0b43af6aa076f0870439c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée un lien symbolique.  <br /></td></tr>
+<tr class="separator:af16add08d0b43af6aa076f0870439c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31fa5fec2e8ef080df2ebe3c444ef358" id="r_a31fa5fec2e8ef080df2ebe3c444ef358"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31fa5fec2e8ef080df2ebe3c444ef358">init_file_system</a> ()</td></tr>
+<tr class="memdesc:a31fa5fec2e8ef080df2ebe3c444ef358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise le système de fichiers.  <br /></td></tr>
+<tr class="separator:a31fa5fec2e8ef080df2ebe3c444ef358"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fd6fa9d4bce870a628123aa5da1eeab" id="r_a6fd6fa9d4bce870a628123aa5da1eeab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fd6fa9d4bce870a628123aa5da1eeab">save_file_system</a> ()</td></tr>
+<tr class="memdesc:a6fd6fa9d4bce870a628123aa5da1eeab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sauvegarde l'état du système de fichiers.  <br /></td></tr>
+<tr class="separator:a6fd6fa9d4bce870a628123aa5da1eeab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade7fcdc72941c0e6cdec7bd6d8e67581" id="r_ade7fcdc72941c0e6cdec7bd6d8e67581"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade7fcdc72941c0e6cdec7bd6d8e67581">close_file_system</a> ()</td></tr>
+<tr class="memdesc:ade7fcdc72941c0e6cdec7bd6d8e67581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ferme proprement le système de fichiers.  <br /></td></tr>
+<tr class="separator:ade7fcdc72941c0e6cdec7bd6d8e67581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4351f6d9769bae6e25c1140c94abf227" id="r_a4351f6d9769bae6e25c1140c94abf227"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4351f6d9769bae6e25c1140c94abf227">load_file_system</a> ()</td></tr>
+<tr class="memdesc:a4351f6d9769bae6e25c1140c94abf227"><td class="mdescLeft">&#160;</td><td class="mdescRight">Charge l'état du système de fichiers.  <br /></td></tr>
+<tr class="separator:a4351f6d9769bae6e25c1140c94abf227"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f04d4017a5fdb44b0cb34e012c97891" id="r_a2f04d4017a5fdb44b0cb34e012c97891"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f04d4017a5fdb44b0cb34e012c97891">handle_command</a> ()</td></tr>
+<tr class="memdesc:a2f04d4017a5fdb44b0cb34e012c97891"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère l'interface en ligne de commande.  <br /></td></tr>
+<tr class="separator:a2f04d4017a5fdb44b0cb34e012c97891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4180aa65e5de8084a41478de6c2b47e1" id="r_a4180aa65e5de8084a41478de6c2b47e1"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4180aa65e5de8084a41478de6c2b47e1">get_current_path</a> ()</td></tr>
+<tr class="memdesc:a4180aa65e5de8084a41478de6c2b47e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtient le chemin absolu du répertoire courant.  <br /></td></tr>
+<tr class="separator:a4180aa65e5de8084a41478de6c2b47e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a5ade22bbc39aee8b1a2f3bc1f5f4ff27" id="r_a5ade22bbc39aee8b1a2f3bc1f5f4ff27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_file_node.html">FileNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ade22bbc39aee8b1a2f3bc1f5f4ff27">root_directory</a></td></tr>
+<tr class="memdesc:a5ade22bbc39aee8b1a2f3bc1f5f4ff27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointeur vers le répertoire racine du système.  <br /></td></tr>
+<tr class="separator:a5ade22bbc39aee8b1a2f3bc1f5f4ff27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68ff57a1cc47283533fc009cc37a895d" id="r_a68ff57a1cc47283533fc009cc37a895d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_file_node.html">FileNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68ff57a1cc47283533fc009cc37a895d">current_directory</a></td></tr>
+<tr class="memdesc:a68ff57a1cc47283533fc009cc37a895d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointeur vers le répertoire de travail actuel.  <br /></td></tr>
+<tr class="separator:a68ff57a1cc47283533fc009cc37a895d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Interface du système de fichiers virtuel. </p>
+<p>Ce fichier définit l'interface publique du système de fichiers, y compris les structures de données et les fonctions disponibles. Le système implémente les fonctionnalités suivantes:</p><ul>
+<li>Création et suppression de fichiers et répertoires</li>
+<li>Gestion des permissions</li>
+<li>Lecture et écriture de fichiers</li>
+<li>Navigation dans l'arborescence</li>
+<li>Liens durs et symboliques</li>
+<li>Persistance des données</li>
+</ul>
+<dl class="section author"><dt>Auteur</dt><dd>BAKHOUCHE Rachel|HUANG Yanmo|ANAGONOU Hervé </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2024 </dd></dl>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="af7ccacadee1c5118b35c73c97a4a74f3" name="af7ccacadee1c5118b35c73c97a4a74f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7ccacadee1c5118b35c73c97a4a74f3">&#9670;&#160;</a></span>FILE_MODE_BOTH <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FILE_MODE_BOTH&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mode lecture et écriture. </p>
+
+</div>
+</div>
+<a id="af7ccacadee1c5118b35c73c97a4a74f3" name="af7ccacadee1c5118b35c73c97a4a74f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7ccacadee1c5118b35c73c97a4a74f3">&#9670;&#160;</a></span>FILE_MODE_BOTH <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FILE_MODE_BOTH&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mode lecture et écriture. </p>
+
+</div>
+</div>
+<a id="a01a82af4b478b1d490bf495e26c319d8" name="a01a82af4b478b1d490bf495e26c319d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01a82af4b478b1d490bf495e26c319d8">&#9670;&#160;</a></span>FILE_MODE_READ <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FILE_MODE_READ&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mode lecture seule. </p>
+
+</div>
+</div>
+<a id="a01a82af4b478b1d490bf495e26c319d8" name="a01a82af4b478b1d490bf495e26c319d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01a82af4b478b1d490bf495e26c319d8">&#9670;&#160;</a></span>FILE_MODE_READ <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FILE_MODE_READ&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mode lecture seule. </p>
+
+</div>
+</div>
+<a id="a38868be632c78d78cffed793136025df" name="a38868be632c78d78cffed793136025df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38868be632c78d78cffed793136025df">&#9670;&#160;</a></span>FILE_MODE_WRITE <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FILE_MODE_WRITE&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mode écriture seule. </p>
+
+</div>
+</div>
+<a id="a38868be632c78d78cffed793136025df" name="a38868be632c78d78cffed793136025df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38868be632c78d78cffed793136025df">&#9670;&#160;</a></span>FILE_MODE_WRITE <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FILE_MODE_WRITE&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mode écriture seule. </p>
+
+</div>
+</div>
+<a id="a032f3618b5ca0ed6e2dc391362dce9eb" name="a032f3618b5ca0ed6e2dc391362dce9eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a032f3618b5ca0ed6e2dc391362dce9eb">&#9670;&#160;</a></span>FS_FILENAME <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FS_FILENAME&#160;&#160;&#160;&quot;filesystem.dat&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nom du fichier de stockage persistant. </p>
+
+</div>
+</div>
+<a id="a032f3618b5ca0ed6e2dc391362dce9eb" name="a032f3618b5ca0ed6e2dc391362dce9eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a032f3618b5ca0ed6e2dc391362dce9eb">&#9670;&#160;</a></span>FS_FILENAME <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FS_FILENAME&#160;&#160;&#160;&quot;filesystem.dat&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nom du fichier de stockage persistant. </p>
+
+</div>
+</div>
+<a id="a2c5eecb22513a88c24ae5831a3265e54" name="a2c5eecb22513a88c24ae5831a3265e54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c5eecb22513a88c24ae5831a3265e54">&#9670;&#160;</a></span>MAX_FILES <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_FILES&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nombre maximum de fichiers par répertoire. </p>
+
+</div>
+</div>
+<a id="a2c5eecb22513a88c24ae5831a3265e54" name="a2c5eecb22513a88c24ae5831a3265e54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c5eecb22513a88c24ae5831a3265e54">&#9670;&#160;</a></span>MAX_FILES <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_FILES&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nombre maximum de fichiers par répertoire. </p>
+
+</div>
+</div>
+<a id="a0c397a708cec89c74029582574516b30" name="a0c397a708cec89c74029582574516b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c397a708cec89c74029582574516b30">&#9670;&#160;</a></span>MAX_NAME_LENGTH <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_NAME_LENGTH&#160;&#160;&#160;50</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Longueur maximale d'un nom de fichier. </p>
+
+</div>
+</div>
+<a id="a0c397a708cec89c74029582574516b30" name="a0c397a708cec89c74029582574516b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c397a708cec89c74029582574516b30">&#9670;&#160;</a></span>MAX_NAME_LENGTH <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_NAME_LENGTH&#160;&#160;&#160;50</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Longueur maximale d'un nom de fichier. </p>
+
+</div>
+</div>
+<a id="a9eb6992d76f02128388ae95c0415604a" name="a9eb6992d76f02128388ae95c0415604a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eb6992d76f02128388ae95c0415604a">&#9670;&#160;</a></span>MAX_PATH_LENGTH <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_PATH_LENGTH&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Longueur maximale d'un chemin. </p>
+
+</div>
+</div>
+<a id="a9eb6992d76f02128388ae95c0415604a" name="a9eb6992d76f02128388ae95c0415604a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eb6992d76f02128388ae95c0415604a">&#9670;&#160;</a></span>MAX_PATH_LENGTH <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_PATH_LENGTH&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Longueur maximale d'un chemin. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des définitions de type</h2>
+<a id="afe3b5f19958a1f749fa757c5a69601a2" name="afe3b5f19958a1f749fa757c5a69601a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe3b5f19958a1f749fa757c5a69601a2">&#9670;&#160;</a></span>FileNode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct FileNode FileNode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Structure représentant un nœud dans le système de fichiers. </p>
+<p>Cette structure est utilisée pour représenter à la fois les fichiers et les répertoires. Elle contient toutes les métadonnées nécessaires ainsi que les liens vers d'autres nœuds. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation du type de l'énumération</h2>
+<a id="a2c794c5c13ab4dd7e65bad031dbe41c3" name="a2c794c5c13ab4dd7e65bad031dbe41c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c794c5c13ab4dd7e65bad031dbe41c3">&#9670;&#160;</a></span>FileType <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a" name="a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a"></a>FILE_TYPE&#160;</td><td class="fielddoc"><p>Nœud de type fichier </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209" name="a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209"></a>DIRECTORY_TYPE&#160;</td><td class="fielddoc"><p>Nœud de type répertoire </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a" name="a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a"></a>FILE_TYPE&#160;</td><td class="fielddoc"><p>Nœud de type fichier </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209" name="a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209"></a>DIRECTORY_TYPE&#160;</td><td class="fielddoc"><p>Nœud de type répertoire </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a2c794c5c13ab4dd7e65bad031dbe41c3" name="a2c794c5c13ab4dd7e65bad031dbe41c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c794c5c13ab4dd7e65bad031dbe41c3">&#9670;&#160;</a></span>FileType <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Types de nœuds dans le système de fichiers. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a" name="a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a"></a>FILE_TYPE&#160;</td><td class="fielddoc"><p>Nœud de type fichier </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209" name="a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209"></a>DIRECTORY_TYPE&#160;</td><td class="fielddoc"><p>Nœud de type répertoire </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a" name="a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a"></a>FILE_TYPE&#160;</td><td class="fielddoc"><p>Nœud de type fichier </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209" name="a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209"></a>DIRECTORY_TYPE&#160;</td><td class="fielddoc"><p>Nœud de type répertoire </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="aca58047d8f2692f18e62862a64ab1caf" name="aca58047d8f2692f18e62862a64ab1caf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca58047d8f2692f18e62862a64ab1caf">&#9670;&#160;</a></span>change_directory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int change_directory </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change le répertoire courant. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du nouveau répertoire courant </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Change le répertoire courant.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du répertoire cible </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Gère les cas spéciaux : ".." (parent), "/" (racine), "." (courant)</li>
+<li>Vérifie si le chemin cible est un répertoire valide</li>
+<li>Met à jour le répertoire de travail courant </li>
+</ul>
+
+</div>
+</div>
+<a id="a614cf84ed84443e4838db7d31d27f0ac" name="a614cf84ed84443e4838db7d31d27f0ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a614cf84ed84443e4838db7d31d27f0ac">&#9670;&#160;</a></span>close_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int close_file </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ferme un fichier. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Ferme un fichier.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier à fermer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie si le fichier existe et est ouvert</li>
+<li>Réinitialise les flags d'ouverture</li>
+<li>Libère les ressources associées </li>
+</ul>
+
+</div>
+</div>
+<a id="ade7fcdc72941c0e6cdec7bd6d8e67581" name="ade7fcdc72941c0e6cdec7bd6d8e67581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade7fcdc72941c0e6cdec7bd6d8e67581">&#9670;&#160;</a></span>close_file_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void close_file_system </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ferme proprement le système de fichiers. </p>
+<p>Cette fonction effectue la fermeture propre du système de fichiers, en sauvegardant l'état actuel et en libérant les ressources.</p>
+<ul>
+<li>Vérifie si le descripteur de fichier est valide</li>
+<li>Sauvegarde l'état actuel du système de fichiers</li>
+<li>Ferme le fichier de stockage</li>
+<li>Réinitialise le descripteur de fichier </li>
+</ul>
+
+</div>
+</div>
+<a id="a53d5c856a4d9db454276915b768d445a" name="a53d5c856a4d9db454276915b768d445a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53d5c856a4d9db454276915b768d445a">&#9670;&#160;</a></span>copy_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int copy_file </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>source</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>destination</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copie un fichier. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>Chemin du fichier source </td></tr>
+    <tr><td class="paramname">destination</td><td>Chemin de destination </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Copie un fichier.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>Chemin du fichier source </td></tr>
+    <tr><td class="paramname">destination</td><td>Chemin de destination </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie l'existence et la validité du fichier source</li>
+<li>Crée un nouveau fichier à la destination</li>
+<li>Copie les permissions et le contenu</li>
+<li>Gère les erreurs de chemin et de permissions </li>
+</ul>
+
+</div>
+</div>
+<a id="ab22d2920e71af9a63143f8959624ada7" name="ab22d2920e71af9a63143f8959624ada7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab22d2920e71af9a63143f8959624ada7">&#9670;&#160;</a></span>create_directory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int create_directory </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>permissions</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crée un nouveau répertoire. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du répertoire à créer </td></tr>
+    <tr><td class="paramname">permissions</td><td>Permissions du répertoire (format octal) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Crée un nouveau répertoire.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du répertoire à créer </td></tr>
+    <tr><td class="paramname">permissions</td><td>Permissions du répertoire (format octal) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie si le répertoire parent existe et est valide</li>
+<li>Vérifie si le répertoire parent n'est pas plein</li>
+<li>Initialise un nouveau nœud de type répertoire</li>
+<li>Met à jour la structure du répertoire parent </li>
+</ul>
+
+</div>
+</div>
+<a id="ae5cb914a15766851fb08fc082e0706e1" name="ae5cb914a15766851fb08fc082e0706e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5cb914a15766851fb08fc082e0706e1">&#9670;&#160;</a></span>create_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int create_file </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>permissions</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crée un nouveau fichier. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier à créer </td></tr>
+    <tr><td class="paramname">permissions</td><td>Permissions du fichier (format octal) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Crée un nouveau fichier.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier à créer </td></tr>
+    <tr><td class="paramname">permissions</td><td>Permissions du fichier (format octal) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie si le répertoire parent existe et est valide</li>
+<li>Vérifie si le répertoire n'est pas plein</li>
+<li>Initialise un nouveau nœud de type fichier</li>
+<li>Met à jour la structure du répertoire parent </li>
+</ul>
+
+</div>
+</div>
+<a id="a28028fb7b248b40d13476bac25b5690d" name="a28028fb7b248b40d13476bac25b5690d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28028fb7b248b40d13476bac25b5690d">&#9670;&#160;</a></span>create_hard_link()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int create_hard_link </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>link_name</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crée un lien dur. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>Chemin de la cible </td></tr>
+    <tr><td class="paramname">link_name</td><td>Nom du lien </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Crée un lien dur.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>Chemin du fichier cible </td></tr>
+    <tr><td class="paramname">link_name</td><td>Nom du nouveau lien dur </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie l'existence et le type du fichier cible</li>
+<li>Incrémente le compteur de références du fichier</li>
+<li>Crée une nouvelle entrée dans le répertoire courant</li>
+<li>Partage le même contenu que le fichier cible </li>
+</ul>
+
+</div>
+</div>
+<a id="af16add08d0b43af6aa076f0870439c16" name="af16add08d0b43af6aa076f0870439c16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af16add08d0b43af6aa076f0870439c16">&#9670;&#160;</a></span>create_symbolic_link()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int create_symbolic_link </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>link_name</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crée un lien symbolique. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>Chemin de la cible </td></tr>
+    <tr><td class="paramname">link_name</td><td>Nom du lien </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Crée un lien symbolique.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>Chemin de la cible </td></tr>
+    <tr><td class="paramname">link_name</td><td>Nom du nouveau lien symbolique </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Crée un nouveau nœud de type lien symbolique</li>
+<li>Stocke le chemin de la cible</li>
+<li>Ne vérifie pas l'existence de la cible (lien symbolique peut être cassé)</li>
+<li>Initialise les attributs du lien </li>
+</ul>
+
+</div>
+</div>
+<a id="ac0daef4f09b7330b4dc70425fbcc3d53" name="ac0daef4f09b7330b4dc70425fbcc3d53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0daef4f09b7330b4dc70425fbcc3d53">&#9670;&#160;</a></span>delete_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int delete_file </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Supprime un fichier ou répertoire. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin de l'élément à supprimer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Supprime un fichier ou répertoire.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Chemin du fichier ou répertoire à supprimer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie l'existence et la validité du chemin</li>
+<li>Gère la suppression récursive pour les répertoires</li>
+<li>Met à jour la structure du répertoire parent </li>
+</ul>
+
+</div>
+</div>
+<a id="a4180aa65e5de8084a41478de6c2b47e1" name="a4180aa65e5de8084a41478de6c2b47e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4180aa65e5de8084a41478de6c2b47e1">&#9670;&#160;</a></span>get_current_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * get_current_path </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtient le chemin absolu du répertoire courant. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Chaîne de caractères représentant le chemin</dd></dl>
+<p>Obtient le chemin absolu du répertoire courant.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>char* Chaîne de caractères représentant le chemin absolu</dd></dl>
+<ul>
+<li>Utilise un buffer statique pour stocker le chemin</li>
+<li>Remonte l'arborescence depuis le répertoire courant jusqu'à la racine</li>
+<li>Gère le cas spécial du répertoire racine "/"</li>
+<li>Construit le chemin en concaténant les noms des répertoires </li>
+</ul>
+
+</div>
+</div>
+<a id="a26d361701ad7dd7bc64f50b35ad89e21" name="a26d361701ad7dd7bc64f50b35ad89e21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26d361701ad7dd7bc64f50b35ad89e21">&#9670;&#160;</a></span>get_file_by_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_file_node.html">FileNode</a> * get_file_by_path </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recherche un fichier par son chemin. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Pointeur vers le nœud trouvé, NULL si non trouvé</dd></dl>
+<p>Recherche un fichier par son chemin.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Le chemin à analyser </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>FileNode* Pointeur vers le nœud trouvé, NULL si le chemin est invalide</dd></dl>
+<ul>
+<li>Gère les chemins absolus (commençant par '/') et relatifs</li>
+<li>Traite les cas spéciaux '.' (répertoire courant) et '..' (répertoire parent)</li>
+<li>Pour un nouveau fichier/répertoire, retourne le parent si le chemin n'existe pas </li>
+</ul>
+
+</div>
+</div>
+<a id="a2f04d4017a5fdb44b0cb34e012c97891" name="a2f04d4017a5fdb44b0cb34e012c97891"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f04d4017a5fdb44b0cb34e012c97891">&#9670;&#160;</a></span>handle_command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handle_command </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gère l'interface en ligne de commande. </p>
+<p>Gère l'interface en ligne de commande.</p>
+<ul>
+<li>Initialise le système de fichiers si nécessaire</li>
+<li>Boucle principale de lecture des commandes</li>
+<li>Parse les arguments en gérant les guillemets</li>
+<li>Exécute la commande correspondante</li>
+<li>Gère les erreurs et affiche l'aide si nécessaire</li>
+<li>Sauvegarde l'état à la sortie </li>
+</ul>
+
+</div>
+</div>
+<a id="a31fa5fec2e8ef080df2ebe3c444ef358" name="a31fa5fec2e8ef080df2ebe3c444ef358"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31fa5fec2e8ef080df2ebe3c444ef358">&#9670;&#160;</a></span>init_file_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_file_system </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise le système de fichiers. </p>
+<p>Cette fonction crée ou charge le système de fichiers. Si un système existant est trouvé, il est chargé. Sinon, un nouveau système est créé avec un répertoire racine. </p>
+
+</div>
+</div>
+<a id="a779f02554faba6a4360b195f8e294246" name="a779f02554faba6a4360b195f8e294246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a779f02554faba6a4360b195f8e294246">&#9670;&#160;</a></span>list_files()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void list_files </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Liste le contenu d'un répertoire. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du répertoire à lister</td></tr>
+    <tr><td class="paramname">path</td><td>Chemin du répertoire à lister</td></tr>
+  </table>
+  </dd>
+</dl>
+<ul>
+<li>Affiche le chemin complet du répertoire</li>
+<li>Pour chaque entrée, affiche :<ul>
+<li>Le type (fichier ou répertoire)</li>
+<li>Le nom</li>
+<li>Les permissions</li>
+<li>La taille (pour les fichiers uniquement) </li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+<a id="a4351f6d9769bae6e25c1140c94abf227" name="a4351f6d9769bae6e25c1140c94abf227"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4351f6d9769bae6e25c1140c94abf227">&#9670;&#160;</a></span>load_file_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int load_file_system </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Charge l'état du système de fichiers. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Charge l'état du système de fichiers.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'échec</dd></dl>
+<ul>
+<li>Vérifie si le descripteur de fichier est valide</li>
+<li>Réinitialise le pointeur de fichier</li>
+<li>Lance le chargement récursif depuis la racine </li>
+</ul>
+
+</div>
+</div>
+<a id="a8a2b35f39891d7ffa8e3db575a8df228" name="a8a2b35f39891d7ffa8e3db575a8df228"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a2b35f39891d7ffa8e3db575a8df228">&#9670;&#160;</a></span>move_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int move_file </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>source</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>destination</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Déplace un fichier. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>Chemin du fichier source </td></tr>
+    <tr><td class="paramname">destination</td><td>Chemin de destination </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Déplace un fichier.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>Chemin du fichier source </td></tr>
+    <tr><td class="paramname">destination</td><td>Chemin de destination </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie l'existence et la validité du fichier source</li>
+<li>Crée un nouveau fichier à la destination</li>
+<li>Copie les permissions et le contenu</li>
+<li>Supprime le fichier source après la copie </li>
+</ul>
+
+</div>
+</div>
+<a id="ad64ced3f6f04c9a3dfda43d8f4891897" name="ad64ced3f6f04c9a3dfda43d8f4891897"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad64ced3f6f04c9a3dfda43d8f4891897">&#9670;&#160;</a></span>open_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int open_file </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>mode</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ouvre un fichier. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier </td></tr>
+    <tr><td class="paramname">mode</td><td>Mode d'ouverture ("r"=lecture, "w"=écriture, "rw"=les deux) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Ouvre un fichier.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier à ouvrir </td></tr>
+    <tr><td class="paramname">mode</td><td>Mode d'ouverture ("r" pour lecture, "w" pour écriture, "rw" pour les deux) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie l'existence et le type du fichier</li>
+<li>Vérifie les permissions d'accès</li>
+<li>Gère les différents modes d'ouverture</li>
+<li>Empêche l'ouverture multiple d'un même fichier </li>
+</ul>
+
+</div>
+</div>
+<a id="a66d42bff955508c02923a1594b699d22" name="a66d42bff955508c02923a1594b699d22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66d42bff955508c02923a1594b699d22">&#9670;&#160;</a></span>read_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int read_file </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lit le contenu d'un fichier. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier </td></tr>
+    <tr><td class="paramname">buffer</td><td>Buffer pour stocker le contenu lu </td></tr>
+    <tr><td class="paramname">size</td><td>Taille du buffer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Nombre d'octets lus, -1 en cas d'erreur</dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier à lire </td></tr>
+    <tr><td class="paramname">buffer</td><td>Buffer pour stocker le contenu lu </td></tr>
+    <tr><td class="paramname">size</td><td>Taille maximale du buffer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int Nombre d'octets lus, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie si le fichier est ouvert en lecture</li>
+<li>Copie le contenu dans le buffer fourni</li>
+<li>Gère la taille maximale du buffer</li>
+<li>Ajoute le caractère nul à la fin </li>
+</ul>
+
+</div>
+</div>
+<a id="a6fd6fa9d4bce870a628123aa5da1eeab" name="a6fd6fa9d4bce870a628123aa5da1eeab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fd6fa9d4bce870a628123aa5da1eeab">&#9670;&#160;</a></span>save_file_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void save_file_system </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sauvegarde l'état du système de fichiers. </p>
+<p>Sauvegarde l'état du système de fichiers.</p>
+<p>Cette fonction sauvegarde l'intégralité du système de fichiers dans le fichier de stockage persistant.</p>
+<ul>
+<li>Vérifie si le descripteur de fichier est valide</li>
+<li>Tronque le fichier existant</li>
+<li>Réinitialise le pointeur de fichier</li>
+<li>Lance la sauvegarde récursive depuis la racine </li>
+</ul>
+
+</div>
+</div>
+<a id="ab9ea7bebad3e5468386e809e394f50cf" name="ab9ea7bebad3e5468386e809e394f50cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9ea7bebad3e5468386e809e394f50cf">&#9670;&#160;</a></span>set_permissions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int set_permissions </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>permissions</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Modifie les permissions d'un fichier. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier </td></tr>
+    <tr><td class="paramname">permissions</td><td>Nouvelles permissions (format octal) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 en cas de succès, -1 en cas d'échec</dd></dl>
+<p>Modifie les permissions d'un fichier.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Chemin du fichier ou répertoire </td></tr>
+    <tr><td class="paramname">permissions</td><td>Nouvelles permissions (format octal) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int 0 en cas de succès, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie l'existence et la validité du chemin</li>
+<li>Met à jour les permissions du fichier ou répertoire</li>
+<li>Gère les erreurs de chemin invalide </li>
+</ul>
+
+</div>
+</div>
+<a id="a4a5f92e121ced273d5862cc2b1fce146" name="a4a5f92e121ced273d5862cc2b1fce146"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a5f92e121ced273d5862cc2b1fce146">&#9670;&#160;</a></span>write_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int write_file </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>content</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Écrit dans un fichier. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier </td></tr>
+    <tr><td class="paramname">content</td><td>Contenu à écrire </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Nombre d'octets écrits, -1 en cas d'erreur</dd></dl>
+<p>Écrit dans un fichier.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin du fichier </td></tr>
+    <tr><td class="paramname">content</td><td>Contenu à écrire </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int Nombre d'octets écrits, -1 en cas d'erreur</dd></dl>
+<ul>
+<li>Vérifie si le fichier est ouvert en écriture</li>
+<li>Libère l'ancien contenu si nécessaire</li>
+<li>Alloue de la mémoire pour le nouveau contenu</li>
+<li>Met à jour la taille du fichier </li>
+</ul>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="a68ff57a1cc47283533fc009cc37a895d" name="a68ff57a1cc47283533fc009cc37a895d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68ff57a1cc47283533fc009cc37a895d">&#9670;&#160;</a></span>current_directory</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_file_node.html">FileNode</a>* current_directory</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointeur vers le répertoire de travail actuel. </p>
+<p>Pointeur vers le répertoire de travail actuel. </p>
+
+</div>
+</div>
+<a id="a5ade22bbc39aee8b1a2f3bc1f5f4ff27" name="a5ade22bbc39aee8b1a2f3bc1f5f4ff27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ade22bbc39aee8b1a2f3bc1f5f4ff27">&#9670;&#160;</a></span>root_directory</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_file_node.html">FileNode</a>* root_directory</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointeur vers le répertoire racine du système. </p>
+<p>Pointeur vers le répertoire racine du système.</p>
+<p>&lt; Pour les opérations d'entrée/sortie &lt; Pour la manipulation des chaînes &lt; Pour les fonctions malloc, free &lt; Pour les opérations sur les fichiers (open, O_RDWR) &lt; Pour les opérations système (read, write, close) &lt; Pour les permissions des fichiers &lt; Pour le traitement des caractères (isspace) &lt; Définitions des structures et constantes</p>
+<p>Variables globales du système de fichiers</p>
+<p>Répertoire racine du système de fichiers </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="file__manager_8h.html">file_manager.h</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

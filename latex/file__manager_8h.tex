@@ -1,0 +1,1035 @@
+\doxysection{Référence du fichier file\+\_\+manager.\+h}
+\hypertarget{file__manager_8h}{}\label{file__manager_8h}\index{file\_manager.h@{file\_manager.h}}
+
+
+Interface du système de fichiers virtuel.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_file_node}{File\+Node}}
+\begin{DoxyCompactList}\small\item\em Structure représentant un nœud dans le système de fichiers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{file__manager_8h_a2c5eecb22513a88c24ae5831a3265e54}{MAX\+\_\+\+FILES}}~100
+\begin{DoxyCompactList}\small\item\em Nombre maximum de fichiers par répertoire. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a9eb6992d76f02128388ae95c0415604a}{MAX\+\_\+\+PATH\+\_\+\+LENGTH}}~256
+\begin{DoxyCompactList}\small\item\em Longueur maximale d\textquotesingle{}un chemin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a0c397a708cec89c74029582574516b30}{MAX\+\_\+\+NAME\+\_\+\+LENGTH}}~50
+\begin{DoxyCompactList}\small\item\em Longueur maximale d\textquotesingle{}un nom de fichier. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a01a82af4b478b1d490bf495e26c319d8}{FILE\+\_\+\+MODE\+\_\+\+READ}}~1
+\begin{DoxyCompactList}\small\item\em Mode lecture seule. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a38868be632c78d78cffed793136025df}{FILE\+\_\+\+MODE\+\_\+\+WRITE}}~2
+\begin{DoxyCompactList}\small\item\em Mode écriture seule. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_af7ccacadee1c5118b35c73c97a4a74f3}{FILE\+\_\+\+MODE\+\_\+\+BOTH}}~3
+\begin{DoxyCompactList}\small\item\em Mode lecture et écriture. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a032f3618b5ca0ed6e2dc391362dce9eb}{FS\+\_\+\+FILENAME}}~"{}filesystem.\+dat"{}
+\begin{DoxyCompactList}\small\item\em Nom du fichier de stockage persistant. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a2c5eecb22513a88c24ae5831a3265e54}{MAX\+\_\+\+FILES}}~100
+\begin{DoxyCompactList}\small\item\em Nombre maximum de fichiers par répertoire. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a9eb6992d76f02128388ae95c0415604a}{MAX\+\_\+\+PATH\+\_\+\+LENGTH}}~256
+\begin{DoxyCompactList}\small\item\em Longueur maximale d\textquotesingle{}un chemin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a0c397a708cec89c74029582574516b30}{MAX\+\_\+\+NAME\+\_\+\+LENGTH}}~50
+\begin{DoxyCompactList}\small\item\em Longueur maximale d\textquotesingle{}un nom de fichier. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a01a82af4b478b1d490bf495e26c319d8}{FILE\+\_\+\+MODE\+\_\+\+READ}}~1
+\begin{DoxyCompactList}\small\item\em Mode lecture seule. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a38868be632c78d78cffed793136025df}{FILE\+\_\+\+MODE\+\_\+\+WRITE}}~2
+\begin{DoxyCompactList}\small\item\em Mode écriture seule. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_af7ccacadee1c5118b35c73c97a4a74f3}{FILE\+\_\+\+MODE\+\_\+\+BOTH}}~3
+\begin{DoxyCompactList}\small\item\em Mode lecture et écriture. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{file__manager_8h_a032f3618b5ca0ed6e2dc391362dce9eb}{FS\+\_\+\+FILENAME}}~"{}filesystem.\+dat"{}
+\begin{DoxyCompactList}\small\item\em Nom du fichier de stockage persistant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct File\+Node \mbox{\hyperlink{file__manager_8h_afe3b5f19958a1f749fa757c5a69601a2}{File\+Node}}
+\begin{DoxyCompactList}\small\item\em Structure représentant un nœud dans le système de fichiers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Énumérations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}{File\+Type}} \{ \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a}{FILE\+\_\+\+TYPE}}
+, \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209}{DIRECTORY\+\_\+\+TYPE}}
+, \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a}{FILE\+\_\+\+TYPE}}
+, \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209}{DIRECTORY\+\_\+\+TYPE}}
+ \}
+\item 
+enum \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}{File\+Type}} \{ \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a}{FILE\+\_\+\+TYPE}}
+, \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209}{DIRECTORY\+\_\+\+TYPE}}
+, \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a}{FILE\+\_\+\+TYPE}}
+, \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209}{DIRECTORY\+\_\+\+TYPE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Types de nœuds dans le système de fichiers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{file__manager_8h_ae5cb914a15766851fb08fc082e0706e1}{create\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}path, int permissions)
+\begin{DoxyCompactList}\small\item\em Crée un nouveau fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_ab22d2920e71af9a63143f8959624ada7}{create\+\_\+directory}} (const char \texorpdfstring{$\ast$}{*}path, int permissions)
+\begin{DoxyCompactList}\small\item\em Crée un nouveau répertoire. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__manager_8h_a779f02554faba6a4360b195f8e294246}{list\+\_\+files}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Liste le contenu d\textquotesingle{}un répertoire. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_a53d5c856a4d9db454276915b768d445a}{copy\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}source, const char \texorpdfstring{$\ast$}{*}destination)
+\begin{DoxyCompactList}\small\item\em Copie un fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_a8a2b35f39891d7ffa8e3db575a8df228}{move\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}source, const char \texorpdfstring{$\ast$}{*}destination)
+\begin{DoxyCompactList}\small\item\em Déplace un fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_ac0daef4f09b7330b4dc70425fbcc3d53}{delete\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Supprime un fichier ou répertoire. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_ab9ea7bebad3e5468386e809e394f50cf}{set\+\_\+permissions}} (const char \texorpdfstring{$\ast$}{*}path, int permissions)
+\begin{DoxyCompactList}\small\item\em Modifie les permissions d\textquotesingle{}un fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_aca58047d8f2692f18e62862a64ab1caf}{change\+\_\+directory}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Change le répertoire courant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_file_node}{File\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file__manager_8h_a26d361701ad7dd7bc64f50b35ad89e21}{get\+\_\+file\+\_\+by\+\_\+path}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Recherche un fichier par son chemin. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_ad64ced3f6f04c9a3dfda43d8f4891897}{open\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}path, const char \texorpdfstring{$\ast$}{*}mode)
+\begin{DoxyCompactList}\small\item\em Ouvre un fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_a614cf84ed84443e4838db7d31d27f0ac}{close\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Ferme un fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_a66d42bff955508c02923a1594b699d22}{read\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}path, char \texorpdfstring{$\ast$}{*}buffer, int size)
+\begin{DoxyCompactList}\small\item\em Lit le contenu d\textquotesingle{}un fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_a4a5f92e121ced273d5862cc2b1fce146}{write\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}path, const char \texorpdfstring{$\ast$}{*}content)
+\begin{DoxyCompactList}\small\item\em Écrit dans un fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_a28028fb7b248b40d13476bac25b5690d}{create\+\_\+hard\+\_\+link}} (const char \texorpdfstring{$\ast$}{*}target, const char \texorpdfstring{$\ast$}{*}link\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Crée un lien dur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_af16add08d0b43af6aa076f0870439c16}{create\+\_\+symbolic\+\_\+link}} (const char \texorpdfstring{$\ast$}{*}target, const char \texorpdfstring{$\ast$}{*}link\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Crée un lien symbolique. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__manager_8h_a31fa5fec2e8ef080df2ebe3c444ef358}{init\+\_\+file\+\_\+system}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le système de fichiers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__manager_8h_a6fd6fa9d4bce870a628123aa5da1eeab}{save\+\_\+file\+\_\+system}} ()
+\begin{DoxyCompactList}\small\item\em Sauvegarde l\textquotesingle{}état du système de fichiers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__manager_8h_ade7fcdc72941c0e6cdec7bd6d8e67581}{close\+\_\+file\+\_\+system}} ()
+\begin{DoxyCompactList}\small\item\em Ferme proprement le système de fichiers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__manager_8h_a4351f6d9769bae6e25c1140c94abf227}{load\+\_\+file\+\_\+system}} ()
+\begin{DoxyCompactList}\small\item\em Charge l\textquotesingle{}état du système de fichiers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__manager_8h_a2f04d4017a5fdb44b0cb34e012c97891}{handle\+\_\+command}} ()
+\begin{DoxyCompactList}\small\item\em Gère l\textquotesingle{}interface en ligne de commande. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file__manager_8h_a4180aa65e5de8084a41478de6c2b47e1}{get\+\_\+current\+\_\+path}} ()
+\begin{DoxyCompactList}\small\item\em Obtient le chemin absolu du répertoire courant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_file_node}{File\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file__manager_8h_a5ade22bbc39aee8b1a2f3bc1f5f4ff27}{root\+\_\+directory}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le répertoire racine du système. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_file_node}{File\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file__manager_8h_a68ff57a1cc47283533fc009cc37a895d}{current\+\_\+directory}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le répertoire de travail actuel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Interface du système de fichiers virtuel. 
+
+Ce fichier définit l\textquotesingle{}interface publique du système de fichiers, y compris les structures de données et les fonctions disponibles. Le système implémente les fonctionnalités suivantes\+:
+\begin{DoxyItemize}
+\item Création et suppression de fichiers et répertoires
+\item Gestion des permissions
+\item Lecture et écriture de fichiers
+\item Navigation dans l\textquotesingle{}arborescence
+\item Liens durs et symboliques
+\item Persistance des données
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Auteur}
+BAKHOUCHE Rachel\texorpdfstring{$\vert$}{|}\+HUANG Yanmo\texorpdfstring{$\vert$}{|}\+ANAGONOU Hervé 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des macros}
+\Hypertarget{file__manager_8h_af7ccacadee1c5118b35c73c97a4a74f3}\index{file\_manager.h@{file\_manager.h}!FILE\_MODE\_BOTH@{FILE\_MODE\_BOTH}}
+\index{FILE\_MODE\_BOTH@{FILE\_MODE\_BOTH}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FILE\_MODE\_BOTH}{FILE\_MODE\_BOTH}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_af7ccacadee1c5118b35c73c97a4a74f3} 
+\#define FILE\+\_\+\+MODE\+\_\+\+BOTH~3}
+
+
+
+Mode lecture et écriture. 
+
+\Hypertarget{file__manager_8h_af7ccacadee1c5118b35c73c97a4a74f3}\index{file\_manager.h@{file\_manager.h}!FILE\_MODE\_BOTH@{FILE\_MODE\_BOTH}}
+\index{FILE\_MODE\_BOTH@{FILE\_MODE\_BOTH}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FILE\_MODE\_BOTH}{FILE\_MODE\_BOTH}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_af7ccacadee1c5118b35c73c97a4a74f3} 
+\#define FILE\+\_\+\+MODE\+\_\+\+BOTH~3}
+
+
+
+Mode lecture et écriture. 
+
+\Hypertarget{file__manager_8h_a01a82af4b478b1d490bf495e26c319d8}\index{file\_manager.h@{file\_manager.h}!FILE\_MODE\_READ@{FILE\_MODE\_READ}}
+\index{FILE\_MODE\_READ@{FILE\_MODE\_READ}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FILE\_MODE\_READ}{FILE\_MODE\_READ}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a01a82af4b478b1d490bf495e26c319d8} 
+\#define FILE\+\_\+\+MODE\+\_\+\+READ~1}
+
+
+
+Mode lecture seule. 
+
+\Hypertarget{file__manager_8h_a01a82af4b478b1d490bf495e26c319d8}\index{file\_manager.h@{file\_manager.h}!FILE\_MODE\_READ@{FILE\_MODE\_READ}}
+\index{FILE\_MODE\_READ@{FILE\_MODE\_READ}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FILE\_MODE\_READ}{FILE\_MODE\_READ}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a01a82af4b478b1d490bf495e26c319d8} 
+\#define FILE\+\_\+\+MODE\+\_\+\+READ~1}
+
+
+
+Mode lecture seule. 
+
+\Hypertarget{file__manager_8h_a38868be632c78d78cffed793136025df}\index{file\_manager.h@{file\_manager.h}!FILE\_MODE\_WRITE@{FILE\_MODE\_WRITE}}
+\index{FILE\_MODE\_WRITE@{FILE\_MODE\_WRITE}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FILE\_MODE\_WRITE}{FILE\_MODE\_WRITE}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a38868be632c78d78cffed793136025df} 
+\#define FILE\+\_\+\+MODE\+\_\+\+WRITE~2}
+
+
+
+Mode écriture seule. 
+
+\Hypertarget{file__manager_8h_a38868be632c78d78cffed793136025df}\index{file\_manager.h@{file\_manager.h}!FILE\_MODE\_WRITE@{FILE\_MODE\_WRITE}}
+\index{FILE\_MODE\_WRITE@{FILE\_MODE\_WRITE}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FILE\_MODE\_WRITE}{FILE\_MODE\_WRITE}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a38868be632c78d78cffed793136025df} 
+\#define FILE\+\_\+\+MODE\+\_\+\+WRITE~2}
+
+
+
+Mode écriture seule. 
+
+\Hypertarget{file__manager_8h_a032f3618b5ca0ed6e2dc391362dce9eb}\index{file\_manager.h@{file\_manager.h}!FS\_FILENAME@{FS\_FILENAME}}
+\index{FS\_FILENAME@{FS\_FILENAME}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FS\_FILENAME}{FS\_FILENAME}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a032f3618b5ca0ed6e2dc391362dce9eb} 
+\#define FS\+\_\+\+FILENAME~"{}filesystem.\+dat"{}}
+
+
+
+Nom du fichier de stockage persistant. 
+
+\Hypertarget{file__manager_8h_a032f3618b5ca0ed6e2dc391362dce9eb}\index{file\_manager.h@{file\_manager.h}!FS\_FILENAME@{FS\_FILENAME}}
+\index{FS\_FILENAME@{FS\_FILENAME}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FS\_FILENAME}{FS\_FILENAME}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a032f3618b5ca0ed6e2dc391362dce9eb} 
+\#define FS\+\_\+\+FILENAME~"{}filesystem.\+dat"{}}
+
+
+
+Nom du fichier de stockage persistant. 
+
+\Hypertarget{file__manager_8h_a2c5eecb22513a88c24ae5831a3265e54}\index{file\_manager.h@{file\_manager.h}!MAX\_FILES@{MAX\_FILES}}
+\index{MAX\_FILES@{MAX\_FILES}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_FILES}{MAX\_FILES}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a2c5eecb22513a88c24ae5831a3265e54} 
+\#define MAX\+\_\+\+FILES~100}
+
+
+
+Nombre maximum de fichiers par répertoire. 
+
+\Hypertarget{file__manager_8h_a2c5eecb22513a88c24ae5831a3265e54}\index{file\_manager.h@{file\_manager.h}!MAX\_FILES@{MAX\_FILES}}
+\index{MAX\_FILES@{MAX\_FILES}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_FILES}{MAX\_FILES}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a2c5eecb22513a88c24ae5831a3265e54} 
+\#define MAX\+\_\+\+FILES~100}
+
+
+
+Nombre maximum de fichiers par répertoire. 
+
+\Hypertarget{file__manager_8h_a0c397a708cec89c74029582574516b30}\index{file\_manager.h@{file\_manager.h}!MAX\_NAME\_LENGTH@{MAX\_NAME\_LENGTH}}
+\index{MAX\_NAME\_LENGTH@{MAX\_NAME\_LENGTH}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_NAME\_LENGTH}{MAX\_NAME\_LENGTH}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a0c397a708cec89c74029582574516b30} 
+\#define MAX\+\_\+\+NAME\+\_\+\+LENGTH~50}
+
+
+
+Longueur maximale d\textquotesingle{}un nom de fichier. 
+
+\Hypertarget{file__manager_8h_a0c397a708cec89c74029582574516b30}\index{file\_manager.h@{file\_manager.h}!MAX\_NAME\_LENGTH@{MAX\_NAME\_LENGTH}}
+\index{MAX\_NAME\_LENGTH@{MAX\_NAME\_LENGTH}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_NAME\_LENGTH}{MAX\_NAME\_LENGTH}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a0c397a708cec89c74029582574516b30} 
+\#define MAX\+\_\+\+NAME\+\_\+\+LENGTH~50}
+
+
+
+Longueur maximale d\textquotesingle{}un nom de fichier. 
+
+\Hypertarget{file__manager_8h_a9eb6992d76f02128388ae95c0415604a}\index{file\_manager.h@{file\_manager.h}!MAX\_PATH\_LENGTH@{MAX\_PATH\_LENGTH}}
+\index{MAX\_PATH\_LENGTH@{MAX\_PATH\_LENGTH}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_PATH\_LENGTH}{MAX\_PATH\_LENGTH}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a9eb6992d76f02128388ae95c0415604a} 
+\#define MAX\+\_\+\+PATH\+\_\+\+LENGTH~256}
+
+
+
+Longueur maximale d\textquotesingle{}un chemin. 
+
+\Hypertarget{file__manager_8h_a9eb6992d76f02128388ae95c0415604a}\index{file\_manager.h@{file\_manager.h}!MAX\_PATH\_LENGTH@{MAX\_PATH\_LENGTH}}
+\index{MAX\_PATH\_LENGTH@{MAX\_PATH\_LENGTH}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_PATH\_LENGTH}{MAX\_PATH\_LENGTH}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a9eb6992d76f02128388ae95c0415604a} 
+\#define MAX\+\_\+\+PATH\+\_\+\+LENGTH~256}
+
+
+
+Longueur maximale d\textquotesingle{}un chemin. 
+
+
+
+\doxysubsection{Documentation des définitions de type}
+\Hypertarget{file__manager_8h_afe3b5f19958a1f749fa757c5a69601a2}\index{file\_manager.h@{file\_manager.h}!FileNode@{FileNode}}
+\index{FileNode@{FileNode}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FileNode}{FileNode}}
+{\footnotesize\ttfamily \label{file__manager_8h_afe3b5f19958a1f749fa757c5a69601a2} 
+typedef struct File\+Node File\+Node}
+
+
+
+Structure représentant un nœud dans le système de fichiers. 
+
+Cette structure est utilisée pour représenter à la fois les fichiers et les répertoires. Elle contient toutes les métadonnées nécessaires ainsi que les liens vers d\textquotesingle{}autres nœuds. 
+
+\doxysubsection{Documentation du type de l\textquotesingle{}énumération}
+\Hypertarget{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}\index{file\_manager.h@{file\_manager.h}!FileType@{FileType}}
+\index{FileType@{FileType}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FileType}{FileType}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3} 
+enum \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}{File\+Type}}}
+
+\begin{DoxyEnumFields}[2]{Valeurs énumérées}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE\_TYPE@{FILE\_TYPE}!file\_manager.h@{file\_manager.h}}\index{file\_manager.h@{file\_manager.h}!FILE\_TYPE@{FILE\_TYPE}}}\Hypertarget{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a}\label{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a} 
+FILE\+\_\+\+TYPE&Nœud de type fichier \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTORY\_TYPE@{DIRECTORY\_TYPE}!file\_manager.h@{file\_manager.h}}\index{file\_manager.h@{file\_manager.h}!DIRECTORY\_TYPE@{DIRECTORY\_TYPE}}}\Hypertarget{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209}\label{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209} 
+DIRECTORY\+\_\+\+TYPE&Nœud de type répertoire \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE\_TYPE@{FILE\_TYPE}!file\_manager.h@{file\_manager.h}}\index{file\_manager.h@{file\_manager.h}!FILE\_TYPE@{FILE\_TYPE}}}\Hypertarget{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a}\label{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a} 
+FILE\+\_\+\+TYPE&Nœud de type fichier \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTORY\_TYPE@{DIRECTORY\_TYPE}!file\_manager.h@{file\_manager.h}}\index{file\_manager.h@{file\_manager.h}!DIRECTORY\_TYPE@{DIRECTORY\_TYPE}}}\Hypertarget{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209}\label{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209} 
+DIRECTORY\+\_\+\+TYPE&Nœud de type répertoire \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}\index{file\_manager.h@{file\_manager.h}!FileType@{FileType}}
+\index{FileType@{FileType}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{FileType}{FileType}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3} 
+enum \mbox{\hyperlink{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3}{File\+Type}}}
+
+
+
+Types de nœuds dans le système de fichiers. 
+
+\begin{DoxyEnumFields}[2]{Valeurs énumérées}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE\_TYPE@{FILE\_TYPE}!file\_manager.h@{file\_manager.h}}\index{file\_manager.h@{file\_manager.h}!FILE\_TYPE@{FILE\_TYPE}}}\Hypertarget{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a}\label{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a} 
+FILE\+\_\+\+TYPE&Nœud de type fichier \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTORY\_TYPE@{DIRECTORY\_TYPE}!file\_manager.h@{file\_manager.h}}\index{file\_manager.h@{file\_manager.h}!DIRECTORY\_TYPE@{DIRECTORY\_TYPE}}}\Hypertarget{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209}\label{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209} 
+DIRECTORY\+\_\+\+TYPE&Nœud de type répertoire \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE\_TYPE@{FILE\_TYPE}!file\_manager.h@{file\_manager.h}}\index{file\_manager.h@{file\_manager.h}!FILE\_TYPE@{FILE\_TYPE}}}\Hypertarget{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a}\label{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3a96c970a7db1d402a64b518ec5146312a} 
+FILE\+\_\+\+TYPE&Nœud de type fichier \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTORY\_TYPE@{DIRECTORY\_TYPE}!file\_manager.h@{file\_manager.h}}\index{file\_manager.h@{file\_manager.h}!DIRECTORY\_TYPE@{DIRECTORY\_TYPE}}}\Hypertarget{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209}\label{file__manager_8h_a2c794c5c13ab4dd7e65bad031dbe41c3af80b8a19fc9c52265dcb87304d21b209} 
+DIRECTORY\+\_\+\+TYPE&Nœud de type répertoire \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Documentation des fonctions}
+\Hypertarget{file__manager_8h_aca58047d8f2692f18e62862a64ab1caf}\index{file\_manager.h@{file\_manager.h}!change\_directory@{change\_directory}}
+\index{change\_directory@{change\_directory}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{change\_directory()}{change\_directory()}}
+{\footnotesize\ttfamily \label{file__manager_8h_aca58047d8f2692f18e62862a64ab1caf} 
+int change\+\_\+directory (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Change le répertoire courant. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du nouveau répertoire courant \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Change le répertoire courant.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du répertoire cible \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Gère les cas spéciaux \+: "{}.."{} (parent), "{}/"{} (racine), "{}."{} (courant)
+\item Vérifie si le chemin cible est un répertoire valide
+\item Met à jour le répertoire de travail courant 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a614cf84ed84443e4838db7d31d27f0ac}\index{file\_manager.h@{file\_manager.h}!close\_file@{close\_file}}
+\index{close\_file@{close\_file}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{close\_file()}{close\_file()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a614cf84ed84443e4838db7d31d27f0ac} 
+int close\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Ferme un fichier. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Ferme un fichier.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier à fermer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie si le fichier existe et est ouvert
+\item Réinitialise les flags d\textquotesingle{}ouverture
+\item Libère les ressources associées 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_ade7fcdc72941c0e6cdec7bd6d8e67581}\index{file\_manager.h@{file\_manager.h}!close\_file\_system@{close\_file\_system}}
+\index{close\_file\_system@{close\_file\_system}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{close\_file\_system()}{close\_file\_system()}}
+{\footnotesize\ttfamily \label{file__manager_8h_ade7fcdc72941c0e6cdec7bd6d8e67581} 
+void close\+\_\+file\+\_\+system (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Ferme proprement le système de fichiers. 
+
+Cette fonction effectue la fermeture propre du système de fichiers, en sauvegardant l\textquotesingle{}état actuel et en libérant les ressources.
+
+
+\begin{DoxyItemize}
+\item Vérifie si le descripteur de fichier est valide
+\item Sauvegarde l\textquotesingle{}état actuel du système de fichiers
+\item Ferme le fichier de stockage
+\item Réinitialise le descripteur de fichier 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a53d5c856a4d9db454276915b768d445a}\index{file\_manager.h@{file\_manager.h}!copy\_file@{copy\_file}}
+\index{copy\_file@{copy\_file}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{copy\_file()}{copy\_file()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a53d5c856a4d9db454276915b768d445a} 
+int copy\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{source}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{destination}{}\end{DoxyParamCaption})}
+
+
+
+Copie un fichier. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em source} & Chemin du fichier source \\
+\hline
+{\em destination} & Chemin de destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Copie un fichier.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em source} & Chemin du fichier source \\
+\hline
+{\em destination} & Chemin de destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie l\textquotesingle{}existence et la validité du fichier source
+\item Crée un nouveau fichier à la destination
+\item Copie les permissions et le contenu
+\item Gère les erreurs de chemin et de permissions 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_ab22d2920e71af9a63143f8959624ada7}\index{file\_manager.h@{file\_manager.h}!create\_directory@{create\_directory}}
+\index{create\_directory@{create\_directory}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{create\_directory()}{create\_directory()}}
+{\footnotesize\ttfamily \label{file__manager_8h_ab22d2920e71af9a63143f8959624ada7} 
+int create\+\_\+directory (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{int}]{permissions}{}\end{DoxyParamCaption})}
+
+
+
+Crée un nouveau répertoire. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du répertoire à créer \\
+\hline
+{\em permissions} & Permissions du répertoire (format octal) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Crée un nouveau répertoire.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du répertoire à créer \\
+\hline
+{\em permissions} & Permissions du répertoire (format octal) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie si le répertoire parent existe et est valide
+\item Vérifie si le répertoire parent n\textquotesingle{}est pas plein
+\item Initialise un nouveau nœud de type répertoire
+\item Met à jour la structure du répertoire parent 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_ae5cb914a15766851fb08fc082e0706e1}\index{file\_manager.h@{file\_manager.h}!create\_file@{create\_file}}
+\index{create\_file@{create\_file}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{create\_file()}{create\_file()}}
+{\footnotesize\ttfamily \label{file__manager_8h_ae5cb914a15766851fb08fc082e0706e1} 
+int create\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{int}]{permissions}{}\end{DoxyParamCaption})}
+
+
+
+Crée un nouveau fichier. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier à créer \\
+\hline
+{\em permissions} & Permissions du fichier (format octal) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Crée un nouveau fichier.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier à créer \\
+\hline
+{\em permissions} & Permissions du fichier (format octal) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie si le répertoire parent existe et est valide
+\item Vérifie si le répertoire n\textquotesingle{}est pas plein
+\item Initialise un nouveau nœud de type fichier
+\item Met à jour la structure du répertoire parent 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a28028fb7b248b40d13476bac25b5690d}\index{file\_manager.h@{file\_manager.h}!create\_hard\_link@{create\_hard\_link}}
+\index{create\_hard\_link@{create\_hard\_link}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{create\_hard\_link()}{create\_hard\_link()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a28028fb7b248b40d13476bac25b5690d} 
+int create\+\_\+hard\+\_\+link (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{target}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{link\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Crée un lien dur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em target} & Chemin de la cible \\
+\hline
+{\em link\+\_\+name} & Nom du lien \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Crée un lien dur.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em target} & Chemin du fichier cible \\
+\hline
+{\em link\+\_\+name} & Nom du nouveau lien dur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie l\textquotesingle{}existence et le type du fichier cible
+\item Incrémente le compteur de références du fichier
+\item Crée une nouvelle entrée dans le répertoire courant
+\item Partage le même contenu que le fichier cible 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_af16add08d0b43af6aa076f0870439c16}\index{file\_manager.h@{file\_manager.h}!create\_symbolic\_link@{create\_symbolic\_link}}
+\index{create\_symbolic\_link@{create\_symbolic\_link}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{create\_symbolic\_link()}{create\_symbolic\_link()}}
+{\footnotesize\ttfamily \label{file__manager_8h_af16add08d0b43af6aa076f0870439c16} 
+int create\+\_\+symbolic\+\_\+link (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{target}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{link\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Crée un lien symbolique. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em target} & Chemin de la cible \\
+\hline
+{\em link\+\_\+name} & Nom du lien \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Crée un lien symbolique.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em target} & Chemin de la cible \\
+\hline
+{\em link\+\_\+name} & Nom du nouveau lien symbolique \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Crée un nouveau nœud de type lien symbolique
+\item Stocke le chemin de la cible
+\item Ne vérifie pas l\textquotesingle{}existence de la cible (lien symbolique peut être cassé)
+\item Initialise les attributs du lien 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_ac0daef4f09b7330b4dc70425fbcc3d53}\index{file\_manager.h@{file\_manager.h}!delete\_file@{delete\_file}}
+\index{delete\_file@{delete\_file}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{delete\_file()}{delete\_file()}}
+{\footnotesize\ttfamily \label{file__manager_8h_ac0daef4f09b7330b4dc70425fbcc3d53} 
+int delete\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Supprime un fichier ou répertoire. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin de l\textquotesingle{}élément à supprimer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Supprime un fichier ou répertoire.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em filename} & Chemin du fichier ou répertoire à supprimer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie l\textquotesingle{}existence et la validité du chemin
+\item Gère la suppression récursive pour les répertoires
+\item Met à jour la structure du répertoire parent 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a4180aa65e5de8084a41478de6c2b47e1}\index{file\_manager.h@{file\_manager.h}!get\_current\_path@{get\_current\_path}}
+\index{get\_current\_path@{get\_current\_path}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{get\_current\_path()}{get\_current\_path()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a4180aa65e5de8084a41478de6c2b47e1} 
+char \texorpdfstring{$\ast$}{*} get\+\_\+current\+\_\+path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtient le chemin absolu du répertoire courant. 
+
+\begin{DoxyReturn}{Renvoie}
+Chaîne de caractères représentant le chemin
+\end{DoxyReturn}
+Obtient le chemin absolu du répertoire courant.
+
+\begin{DoxyReturn}{Renvoie}
+char\texorpdfstring{$\ast$}{*} Chaîne de caractères représentant le chemin absolu
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Utilise un buffer statique pour stocker le chemin
+\item Remonte l\textquotesingle{}arborescence depuis le répertoire courant jusqu\textquotesingle{}à la racine
+\item Gère le cas spécial du répertoire racine "{}/"{}
+\item Construit le chemin en concaténant les noms des répertoires 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a26d361701ad7dd7bc64f50b35ad89e21}\index{file\_manager.h@{file\_manager.h}!get\_file\_by\_path@{get\_file\_by\_path}}
+\index{get\_file\_by\_path@{get\_file\_by\_path}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{get\_file\_by\_path()}{get\_file\_by\_path()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a26d361701ad7dd7bc64f50b35ad89e21} 
+\mbox{\hyperlink{struct_file_node}{File\+Node}} \texorpdfstring{$\ast$}{*} get\+\_\+file\+\_\+by\+\_\+path (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Recherche un fichier par son chemin. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Pointeur vers le nœud trouvé, NULL si non trouvé
+\end{DoxyReturn}
+Recherche un fichier par son chemin.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Le chemin à analyser \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+File\+Node\texorpdfstring{$\ast$}{*} Pointeur vers le nœud trouvé, NULL si le chemin est invalide
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Gère les chemins absolus (commençant par \textquotesingle{}/\textquotesingle{}) et relatifs
+\item Traite les cas spéciaux \textquotesingle{}.\textquotesingle{} (répertoire courant) et \textquotesingle{}..\textquotesingle{} (répertoire parent)
+\item Pour un nouveau fichier/répertoire, retourne le parent si le chemin n\textquotesingle{}existe pas 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a2f04d4017a5fdb44b0cb34e012c97891}\index{file\_manager.h@{file\_manager.h}!handle\_command@{handle\_command}}
+\index{handle\_command@{handle\_command}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{handle\_command()}{handle\_command()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a2f04d4017a5fdb44b0cb34e012c97891} 
+void handle\+\_\+command (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gère l\textquotesingle{}interface en ligne de commande. 
+
+Gère l\textquotesingle{}interface en ligne de commande.
+
+
+\begin{DoxyItemize}
+\item Initialise le système de fichiers si nécessaire
+\item Boucle principale de lecture des commandes
+\item Parse les arguments en gérant les guillemets
+\item Exécute la commande correspondante
+\item Gère les erreurs et affiche l\textquotesingle{}aide si nécessaire
+\item Sauvegarde l\textquotesingle{}état à la sortie 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a31fa5fec2e8ef080df2ebe3c444ef358}\index{file\_manager.h@{file\_manager.h}!init\_file\_system@{init\_file\_system}}
+\index{init\_file\_system@{init\_file\_system}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{init\_file\_system()}{init\_file\_system()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a31fa5fec2e8ef080df2ebe3c444ef358} 
+void init\+\_\+file\+\_\+system (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialise le système de fichiers. 
+
+Cette fonction crée ou charge le système de fichiers. Si un système existant est trouvé, il est chargé. Sinon, un nouveau système est créé avec un répertoire racine. \Hypertarget{file__manager_8h_a779f02554faba6a4360b195f8e294246}\index{file\_manager.h@{file\_manager.h}!list\_files@{list\_files}}
+\index{list\_files@{list\_files}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{list\_files()}{list\_files()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a779f02554faba6a4360b195f8e294246} 
+void list\+\_\+files (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Liste le contenu d\textquotesingle{}un répertoire. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du répertoire à lister\\
+\hline
+{\em path} & Chemin du répertoire à lister\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item Affiche le chemin complet du répertoire
+\item Pour chaque entrée, affiche \+:
+\begin{DoxyItemize}
+\item Le type (fichier ou répertoire)
+\item Le nom
+\item Les permissions
+\item La taille (pour les fichiers uniquement) 
+\end{DoxyItemize}
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a4351f6d9769bae6e25c1140c94abf227}\index{file\_manager.h@{file\_manager.h}!load\_file\_system@{load\_file\_system}}
+\index{load\_file\_system@{load\_file\_system}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{load\_file\_system()}{load\_file\_system()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a4351f6d9769bae6e25c1140c94abf227} 
+int load\+\_\+file\+\_\+system (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Charge l\textquotesingle{}état du système de fichiers. 
+
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Charge l\textquotesingle{}état du système de fichiers.
+
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie si le descripteur de fichier est valide
+\item Réinitialise le pointeur de fichier
+\item Lance le chargement récursif depuis la racine 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a8a2b35f39891d7ffa8e3db575a8df228}\index{file\_manager.h@{file\_manager.h}!move\_file@{move\_file}}
+\index{move\_file@{move\_file}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{move\_file()}{move\_file()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a8a2b35f39891d7ffa8e3db575a8df228} 
+int move\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{source}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{destination}{}\end{DoxyParamCaption})}
+
+
+
+Déplace un fichier. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em source} & Chemin du fichier source \\
+\hline
+{\em destination} & Chemin de destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Déplace un fichier.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em source} & Chemin du fichier source \\
+\hline
+{\em destination} & Chemin de destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie l\textquotesingle{}existence et la validité du fichier source
+\item Crée un nouveau fichier à la destination
+\item Copie les permissions et le contenu
+\item Supprime le fichier source après la copie 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_ad64ced3f6f04c9a3dfda43d8f4891897}\index{file\_manager.h@{file\_manager.h}!open\_file@{open\_file}}
+\index{open\_file@{open\_file}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{open\_file()}{open\_file()}}
+{\footnotesize\ttfamily \label{file__manager_8h_ad64ced3f6f04c9a3dfda43d8f4891897} 
+int open\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Ouvre un fichier. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier \\
+\hline
+{\em mode} & Mode d\textquotesingle{}ouverture ("{}r"{}=lecture, "{}w"{}=écriture, "{}rw"{}=les deux) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Ouvre un fichier.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier à ouvrir \\
+\hline
+{\em mode} & Mode d\textquotesingle{}ouverture ("{}r"{} pour lecture, "{}w"{} pour écriture, "{}rw"{} pour les deux) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie l\textquotesingle{}existence et le type du fichier
+\item Vérifie les permissions d\textquotesingle{}accès
+\item Gère les différents modes d\textquotesingle{}ouverture
+\item Empêche l\textquotesingle{}ouverture multiple d\textquotesingle{}un même fichier 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a66d42bff955508c02923a1594b699d22}\index{file\_manager.h@{file\_manager.h}!read\_file@{read\_file}}
+\index{read\_file@{read\_file}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{read\_file()}{read\_file()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a66d42bff955508c02923a1594b699d22} 
+int read\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{int}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Lit le contenu d\textquotesingle{}un fichier. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier \\
+\hline
+{\em buffer} & Buffer pour stocker le contenu lu \\
+\hline
+{\em size} & Taille du buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nombre d\textquotesingle{}octets lus, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier à lire \\
+\hline
+{\em buffer} & Buffer pour stocker le contenu lu \\
+\hline
+{\em size} & Taille maximale du buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int Nombre d\textquotesingle{}octets lus, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie si le fichier est ouvert en lecture
+\item Copie le contenu dans le buffer fourni
+\item Gère la taille maximale du buffer
+\item Ajoute le caractère nul à la fin 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a6fd6fa9d4bce870a628123aa5da1eeab}\index{file\_manager.h@{file\_manager.h}!save\_file\_system@{save\_file\_system}}
+\index{save\_file\_system@{save\_file\_system}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{save\_file\_system()}{save\_file\_system()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a6fd6fa9d4bce870a628123aa5da1eeab} 
+void save\+\_\+file\+\_\+system (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Sauvegarde l\textquotesingle{}état du système de fichiers. 
+
+Sauvegarde l\textquotesingle{}état du système de fichiers.
+
+Cette fonction sauvegarde l\textquotesingle{}intégralité du système de fichiers dans le fichier de stockage persistant.
+
+
+\begin{DoxyItemize}
+\item Vérifie si le descripteur de fichier est valide
+\item Tronque le fichier existant
+\item Réinitialise le pointeur de fichier
+\item Lance la sauvegarde récursive depuis la racine 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_ab9ea7bebad3e5468386e809e394f50cf}\index{file\_manager.h@{file\_manager.h}!set\_permissions@{set\_permissions}}
+\index{set\_permissions@{set\_permissions}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{set\_permissions()}{set\_permissions()}}
+{\footnotesize\ttfamily \label{file__manager_8h_ab9ea7bebad3e5468386e809e394f50cf} 
+int set\+\_\+permissions (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{filename}{, }\item[{int}]{permissions}{}\end{DoxyParamCaption})}
+
+
+
+Modifie les permissions d\textquotesingle{}un fichier. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier \\
+\hline
+{\em permissions} & Nouvelles permissions (format octal) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 en cas de succès, -\/1 en cas d\textquotesingle{}échec
+\end{DoxyReturn}
+Modifie les permissions d\textquotesingle{}un fichier.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em filename} & Chemin du fichier ou répertoire \\
+\hline
+{\em permissions} & Nouvelles permissions (format octal) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 0 en cas de succès, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie l\textquotesingle{}existence et la validité du chemin
+\item Met à jour les permissions du fichier ou répertoire
+\item Gère les erreurs de chemin invalide 
+\end{DoxyItemize}\Hypertarget{file__manager_8h_a4a5f92e121ced273d5862cc2b1fce146}\index{file\_manager.h@{file\_manager.h}!write\_file@{write\_file}}
+\index{write\_file@{write\_file}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{write\_file()}{write\_file()}}
+{\footnotesize\ttfamily \label{file__manager_8h_a4a5f92e121ced273d5862cc2b1fce146} 
+int write\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{content}{}\end{DoxyParamCaption})}
+
+
+
+Écrit dans un fichier. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier \\
+\hline
+{\em content} & Contenu à écrire \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nombre d\textquotesingle{}octets écrits, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+Écrit dans un fichier.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Chemin du fichier \\
+\hline
+{\em content} & Contenu à écrire \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int Nombre d\textquotesingle{}octets écrits, -\/1 en cas d\textquotesingle{}erreur
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Vérifie si le fichier est ouvert en écriture
+\item Libère l\textquotesingle{}ancien contenu si nécessaire
+\item Alloue de la mémoire pour le nouveau contenu
+\item Met à jour la taille du fichier 
+\end{DoxyItemize}
+
+\doxysubsection{Documentation des variables}
+\Hypertarget{file__manager_8h_a68ff57a1cc47283533fc009cc37a895d}\index{file\_manager.h@{file\_manager.h}!current\_directory@{current\_directory}}
+\index{current\_directory@{current\_directory}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{current\_directory}{current\_directory}}
+{\footnotesize\ttfamily \label{file__manager_8h_a68ff57a1cc47283533fc009cc37a895d} 
+\mbox{\hyperlink{struct_file_node}{File\+Node}}\texorpdfstring{$\ast$}{*} current\+\_\+directory\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Pointeur vers le répertoire de travail actuel. 
+
+Pointeur vers le répertoire de travail actuel. \Hypertarget{file__manager_8h_a5ade22bbc39aee8b1a2f3bc1f5f4ff27}\index{file\_manager.h@{file\_manager.h}!root\_directory@{root\_directory}}
+\index{root\_directory@{root\_directory}!file\_manager.h@{file\_manager.h}}
+\doxysubsubsection{\texorpdfstring{root\_directory}{root\_directory}}
+{\footnotesize\ttfamily \label{file__manager_8h_a5ade22bbc39aee8b1a2f3bc1f5f4ff27} 
+\mbox{\hyperlink{struct_file_node}{File\+Node}}\texorpdfstring{$\ast$}{*} root\+\_\+directory\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Pointeur vers le répertoire racine du système. 
+
+Pointeur vers le répertoire racine du système.
+
+\texorpdfstring{$<$}{<} Pour les opérations d\textquotesingle{}entrée/sortie \texorpdfstring{$<$}{<} Pour la manipulation des chaînes \texorpdfstring{$<$}{<} Pour les fonctions malloc, free \texorpdfstring{$<$}{<} Pour les opérations sur les fichiers (open, O\+\_\+\+RDWR) \texorpdfstring{$<$}{<} Pour les opérations système (read, write, close) \texorpdfstring{$<$}{<} Pour les permissions des fichiers \texorpdfstring{$<$}{<} Pour le traitement des caractères (isspace) \texorpdfstring{$<$}{<} Définitions des structures et constantes
+
+Variables globales du système de fichiers
+
+Répertoire racine du système de fichiers 

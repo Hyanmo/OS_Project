@@ -1,22 +1,50 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-// fcntl.h - Pour les opérations sur les fichiers (open, O_RDWR)
-#include <fcntl.h>     
-// unistd.h - Pour les opérations système (read, write, close)
-#include <unistd.h>
-// sys/stat.h - Pour les permissions des fichiers
-#include <sys/stat.h>
-// ctype.h - Pour le traitement des caractères (isspace)
-#include <ctype.h>
-// file_manager.h - Définitions des structures et constantes du système de fichiers
-#include "file_manager.h"
+/**
+ * @file file_manager.c
+ * @brief Implémentation d'un système de fichiers virtuel
+ *
+ * Ce fichier contient l'implémentation d'un système de fichiers simple en mémoire.
+ * Il fournit les fonctionnalités suivantes:
+ * - Gestion des fichiers et répertoires
+ * - Gestion des permissions
+ * - Liens durs et symboliques
+ * - Persistance des données
+ *
+ * @author BAKHOUCHE Rachel|HUANG Yanmo|ANAGONOU Hervé
+ * @date 2024
+ */
 
+/**
+ * @brief Inclusions des bibliothèques nécessaires
+ */
+#include <stdio.h>      /**< Pour les opérations d'entrée/sortie */
+#include <string.h>     /**< Pour la manipulation des chaînes */
+#include <stdlib.h>     /**< Pour les fonctions malloc, free */
+#include <fcntl.h>      /**< Pour les opérations sur les fichiers (open, O_RDWR) */
+#include <unistd.h>     /**< Pour les opérations système (read, write, close) */
+#include <sys/stat.h>   /**< Pour les permissions des fichiers */
+#include <ctype.h>      /**< Pour le traitement des caractères (isspace) */
+#include "file_manager.h" /**< Définitions des structures et constantes */
+
+/**
+ * @brief Variables globales du système de fichiers
+ */
+
+/** @brief Répertoire racine du système de fichiers */
 FileNode* root_directory = NULL;
+
+/** @brief Répertoire de travail actuel */
 FileNode* current_directory = NULL;
+
+/** @brief Descripteur de fichier pour le stockage persistant */
 int fs_fd;
 
-// Initialiser le système de fichiers
+/**
+ * @brief Initialise le système de fichiers
+ *
+ * Cette fonction crée ou charge le système de fichiers.
+ * Si un système existant est trouvé, il est chargé.
+ * Sinon, un nouveau système est créé avec un répertoire racine.
+ */
 void init_file_system() {
     fs_fd = open(FS_FILENAME, O_RDWR | O_CREAT, 0644);
     if (fs_fd < 0) {
@@ -42,7 +70,20 @@ void init_file_system() {
     current_directory = root_directory;
 }
 
-// Sauvegarder un répertoire et ses contenus récursivement
+/**
+ * @brief Sauvegarde récursivement un répertoire et son contenu
+ * 
+ * Cette fonction sauvegarde un nœud de répertoire et tous ses enfants
+ * dans le fichier de stockage persistant.
+ * 
+ * @param fd Descripteur du fichier de stockage
+ * @param dir Pointeur vers le nœud de répertoire à sauvegarder
+ * 
+ * @details
+ * - Vérifie d'abord si le nœud est valide
+ * - Écrit le nœud courant dans le fichier
+ * - Sauvegarde récursivement tous les enfants
+ */
 void save_directory(int fd, FileNode* dir) {
     if (!dir) return;
     
@@ -55,7 +96,18 @@ void save_directory(int fd, FileNode* dir) {
     }
 }
 
-// Sauvegarder le système de fichiers
+/**
+ * @brief Sauvegarde l'état complet du système de fichiers
+ * 
+ * Cette fonction sauvegarde l'intégralité du système de fichiers
+ * dans le fichier de stockage persistant.
+ * 
+ * @details
+ * - Vérifie si le descripteur de fichier est valide
+ * - Tronque le fichier existant
+ * - Réinitialise le pointeur de fichier
+ * - Lance la sauvegarde récursive depuis la racine
+ */
 void save_file_system() {
     if (fs_fd < 0) return;
     
@@ -67,7 +119,18 @@ void save_file_system() {
     save_directory(fs_fd, root_directory);
 }
 
-// Récursivement charger un répertoire
+/**
+ * @brief Charge récursivement un répertoire depuis le stockage
+ * 
+ * @param fd Descripteur du fichier de stockage
+ * @return FileNode* Pointeur vers le nœud chargé, NULL en cas d'erreur
+ * 
+ * @details
+ * - Alloue la mémoire pour un nouveau nœud
+ * - Lit les données du nœud depuis le fichier
+ * - Charge récursivement tous les enfants
+ * - Établit les liens parent-enfant
+ */
 FileNode* load_directory(int fd) {
     FileNode* node = (FileNode*)malloc(sizeof(FileNode));
     
@@ -88,7 +151,16 @@ FileNode* load_directory(int fd) {
     return node;
 }
 
-// Charger le système de fichiers
+/**
+ * @brief Charge le système de fichiers depuis le stockage
+ * 
+ * @return int 0 en cas de succès, -1 en cas d'échec
+ * 
+ * @details
+ * - Vérifie si le descripteur de fichier est valide
+ * - Réinitialise le pointeur de fichier
+ * - Lance le chargement récursif depuis la racine
+ */
 int load_file_system() {
     if (fs_fd < 0) return -1;
     
@@ -99,6 +171,18 @@ int load_file_system() {
 }
 
 // Fermer le système de fichiers
+/**
+ * @brief Ferme proprement le système de fichiers
+ * 
+ * Cette fonction effectue la fermeture propre du système de fichiers,
+ * en sauvegardant l'état actuel et en libérant les ressources.
+ * 
+ * @details
+ * - Vérifie si le descripteur de fichier est valide
+ * - Sauvegarde l'état actuel du système de fichiers
+ * - Ferme le fichier de stockage
+ * - Réinitialise le descripteur de fichier
+ */
 void close_file_system() {
     if (fs_fd >= 0) {
         save_file_system();
@@ -107,7 +191,17 @@ void close_file_system() {
     }
 }
 
-// Analyser le chemin
+/**
+ * @brief Analyse un chemin et retourne le nœud correspondant
+ * 
+ * @param path Le chemin à analyser
+ * @return FileNode* Pointeur vers le nœud trouvé, NULL si le chemin est invalide
+ * 
+ * @details
+ * - Gère les chemins absolus (commençant par '/') et relatifs
+ * - Traite les cas spéciaux '.' (répertoire courant) et '..' (répertoire parent)
+ * - Pour un nouveau fichier/répertoire, retourne le parent si le chemin n'existe pas
+ */
 FileNode* get_file_by_path(const char* path) {
     // Traiter les cas spéciaux pour la racine et le répertoire courant
     if (strcmp(path, "/") == 0) return root_directory;
@@ -160,7 +254,20 @@ FileNode* get_file_by_path(const char* path) {
     return current;
 }
 
-// Créer un fichier
+
+/**
+ * @brief Crée un nouveau fichier dans le système
+ * 
+ * @param path Chemin du fichier à créer
+ * @param permissions Permissions du fichier (format octal)
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie si le répertoire parent existe et est valide
+ * - Vérifie si le répertoire n'est pas plein
+ * - Initialise un nouveau nœud de type fichier
+ * - Met à jour la structure du répertoire parent
+ */
 int create_file(const char* path, int permissions) {
     // Obtenir le répertoire parent et le nom du fichier
     char path_copy[MAX_PATH_LENGTH];
@@ -200,7 +307,20 @@ int create_file(const char* path, int permissions) {
     return 0;
 }
 
-// Créer un répertoire
+
+/**
+ * @brief Crée un nouveau répertoire dans le système
+ * 
+ * @param path Chemin du répertoire à créer
+ * @param permissions Permissions du répertoire (format octal)
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie si le répertoire parent existe et est valide
+ * - Vérifie si le répertoire parent n'est pas plein
+ * - Initialise un nouveau nœud de type répertoire
+ * - Met à jour la structure du répertoire parent
+ */
 int create_directory(const char* path, int permissions) {
     // Obtenir le répertoire parent et le nom du répertoire
     char path_copy[MAX_PATH_LENGTH];
@@ -236,7 +356,19 @@ int create_directory(const char* path, int permissions) {
     return 0;
 }
 
-// Lister les fichiers
+/**
+ * @brief Liste le contenu d'un répertoire
+ * 
+ * @param path Chemin du répertoire à lister
+ * 
+ * @details
+ * - Affiche le chemin complet du répertoire
+ * - Pour chaque entrée, affiche :
+ *   - Le type (fichier ou répertoire)
+ *   - Le nom
+ *   - Les permissions
+ *   - La taille (pour les fichiers uniquement)
+ */
 void list_files(const char* path) {
     char path_copy[MAX_PATH_LENGTH];
     strncpy(path_copy, path, MAX_PATH_LENGTH - 1);
@@ -270,7 +402,17 @@ void list_files(const char* path) {
     }
 }
 
-// Changer de répertoire
+/**
+ * @brief Change le répertoire de travail courant
+ * 
+ * @param path Chemin du répertoire cible
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Gère les cas spéciaux : ".." (parent), "/" (racine), "." (courant)
+ * - Vérifie si le chemin cible est un répertoire valide
+ * - Met à jour le répertoire de travail courant
+ */
 int change_directory(const char* path) {
     if (strcmp(path, "..") == 0) {
         // Retourner au répertoire parent
@@ -322,7 +464,19 @@ int change_directory(const char* path) {
     }
 }
 
-// Copier un fichier
+/**
+ * @brief Copie un fichier vers une nouvelle destination
+ * 
+ * @param source Chemin du fichier source
+ * @param destination Chemin de destination
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie l'existence et la validité du fichier source
+ * - Crée un nouveau fichier à la destination
+ * - Copie les permissions et le contenu
+ * - Gère les erreurs de chemin et de permissions
+ */
 int copy_file(const char* source, const char* destination) {
     // Obtenir les informations du chemin source
     char src_path[MAX_PATH_LENGTH];
@@ -376,7 +530,19 @@ int copy_file(const char* source, const char* destination) {
     return -1;
 }
 
-// Déplacer un fichier
+/**
+ * @brief Déplace un fichier vers une nouvelle destination
+ * 
+ * @param source Chemin du fichier source
+ * @param destination Chemin de destination
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie l'existence et la validité du fichier source
+ * - Crée un nouveau fichier à la destination
+ * - Copie les permissions et le contenu
+ * - Supprime le fichier source après la copie
+ */
 int move_file(const char* source, const char* destination) {
     // Obtenir les informations du chemin source
     char src_path[MAX_PATH_LENGTH];
@@ -437,8 +603,16 @@ int move_file(const char* source, const char* destination) {
     return -1;
 }
 
-// Supprimer un fichier
-// Supprimer récursivement un répertoire et son contenu
+/**
+ * @brief Supprime récursivement un nœud et tous ses enfants
+ * 
+ * @param node Pointeur vers le nœud à supprimer
+ * 
+ * @details
+ * - Supprime récursivement tous les nœuds enfants
+ * - Libère la mémoire allouée pour le nœud
+ * - Gère les cas de répertoires et fichiers
+ */
 void recursive_delete(FileNode* node) {
     // Supprimer d'abord tous les nœuds enfants récursivement
     if (node == NULL) return;
@@ -452,6 +626,17 @@ void recursive_delete(FileNode* node) {
     free(node);
 }
 
+/**
+ * @brief Supprime un fichier ou un répertoire
+ * 
+ * @param filename Chemin du fichier ou répertoire à supprimer
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie l'existence et la validité du chemin
+ * - Gère la suppression récursive pour les répertoires
+ * - Met à jour la structure du répertoire parent
+ */
 int delete_file(const char* filename) {
     // Obtenir le nom du fichier après le dernier '/'
     char path_copy[MAX_PATH_LENGTH];
@@ -511,7 +696,18 @@ int delete_file(const char* filename) {
     return 0;
 }
 
-// Modifier les permissions
+/**
+ * @brief Modifie les permissions d'un fichier ou répertoire
+ * 
+ * @param filename Chemin du fichier ou répertoire
+ * @param permissions Nouvelles permissions (format octal)
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie l'existence et la validité du chemin
+ * - Met à jour les permissions du fichier ou répertoire
+ * - Gère les erreurs de chemin invalide
+ */
 int set_permissions(const char* filename, int permissions) {
     // Obtenir le nom du fichier après le dernier '/'
     char path_copy[MAX_PATH_LENGTH];
@@ -555,7 +751,19 @@ int set_permissions(const char* filename, int permissions) {
     return 0;
 }
 
-// Ouvrir un fichier
+/**
+ * @brief Ouvre un fichier en mode lecture ou écriture
+ * 
+ * @param path Chemin du fichier à ouvrir
+ * @param mode Mode d'ouverture ("r" pour lecture, "w" pour écriture, "rw" pour les deux)
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie l'existence et le type du fichier
+ * - Vérifie les permissions d'accès
+ * - Gère les différents modes d'ouverture
+ * - Empêche l'ouverture multiple d'un même fichier
+ */
 int open_file(const char* path, const char* mode) {
     FileNode* file = get_file_by_path(path);
     if (file == NULL || file->type != FILE_TYPE) {
@@ -600,6 +808,20 @@ int open_file(const char* path, const char* mode) {
     return 0;
 }
 
+/**
+ * @brief Lit le contenu d'un fichier
+ * 
+ * @param path Chemin du fichier à lire
+ * @param buffer Buffer pour stocker le contenu lu
+ * @param size Taille maximale du buffer
+ * @return int Nombre d'octets lus, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie si le fichier est ouvert en lecture
+ * - Copie le contenu dans le buffer fourni
+ * - Gère la taille maximale du buffer
+ * - Ajoute le caractère nul à la fin
+ */
 int read_file(const char* path, char* buffer, int size) {
     FileNode* file = get_file_by_path(path);
     if (file == NULL || file->type != FILE_TYPE) {
@@ -631,6 +853,19 @@ int read_file(const char* path, char* buffer, int size) {
     return copy_size;
 }
 
+/**
+ * @brief Écrit du contenu dans un fichier
+ * 
+ * @param path Chemin du fichier
+ * @param content Contenu à écrire
+ * @return int Nombre d'octets écrits, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie si le fichier est ouvert en écriture
+ * - Libère l'ancien contenu si nécessaire
+ * - Alloue de la mémoire pour le nouveau contenu
+ * - Met à jour la taille du fichier
+ */
 int write_file(const char* path, const char* content) {
     FileNode* file = get_file_by_path(path);
     if (file == NULL || file->type != FILE_TYPE) {
@@ -660,6 +895,17 @@ int write_file(const char* path, const char* content) {
     return file->size;
 }
 
+/**
+ * @brief Ferme un fichier ouvert
+ * 
+ * @param path Chemin du fichier à fermer
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie si le fichier existe et est ouvert
+ * - Réinitialise les flags d'ouverture
+ * - Libère les ressources associées
+ */
 int close_file(const char* path) {
     FileNode* file = get_file_by_path(path);
     if (file == NULL || file->type != FILE_TYPE) {
@@ -678,7 +924,17 @@ int close_file(const char* path) {
     return 0;
 }
 
-// Obtenir le chemin complet du répertoire courant
+/**
+ * @brief Obtient le chemin absolu du répertoire de travail actuel
+ * 
+ * @return char* Chaîne de caractères représentant le chemin absolu
+ * 
+ * @details
+ * - Utilise un buffer statique pour stocker le chemin
+ * - Remonte l'arborescence depuis le répertoire courant jusqu'à la racine
+ * - Gère le cas spécial du répertoire racine "/"
+ * - Construit le chemin en concaténant les noms des répertoires
+ */
 char* get_current_path() {
     static char path[MAX_PATH_LENGTH];
     FileNode* current = current_directory;
@@ -700,7 +956,19 @@ char* get_current_path() {
     return path[0] ? path : "/";
 }
 
-// Créer un lien dur
+/**
+ * @brief Crée un lien dur vers un fichier existant
+ * 
+ * @param target Chemin du fichier cible
+ * @param link_name Nom du nouveau lien dur
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Vérifie l'existence et le type du fichier cible
+ * - Incrémente le compteur de références du fichier
+ * - Crée une nouvelle entrée dans le répertoire courant
+ * - Partage le même contenu que le fichier cible
+ */
 int create_hard_link(const char* target, const char* link_name) {
     FileNode* target_file = get_file_by_path(target);
     if (target_file == NULL || target_file->type != FILE_TYPE) {
@@ -720,7 +988,19 @@ int create_hard_link(const char* target, const char* link_name) {
     return 0;
 }
 
-// Créer un lien symbolique
+/**
+ * @brief Crée un lien symbolique vers un fichier ou répertoire
+ * 
+ * @param target Chemin de la cible
+ * @param link_name Nom du nouveau lien symbolique
+ * @return int 0 en cas de succès, -1 en cas d'erreur
+ * 
+ * @details
+ * - Crée un nouveau nœud de type lien symbolique
+ * - Stocke le chemin de la cible
+ * - Ne vérifie pas l'existence de la cible (lien symbolique peut être cassé)
+ * - Initialise les attributs du lien
+ */
 int create_symbolic_link(const char* target, const char* link_name) {
     FileNode* link = (FileNode*)malloc(sizeof(FileNode));
     strncpy(link->name, link_name, MAX_NAME_LENGTH - 1);
@@ -738,7 +1018,17 @@ int create_symbolic_link(const char* target, const char* link_name) {
     return 0;
 }
 
-// Traiter les commandes
+/**
+ * @brief Traite les commandes utilisateur du système de fichiers
+ * 
+ * @details
+ * - Initialise le système de fichiers si nécessaire
+ * - Boucle principale de lecture des commandes
+ * - Parse les arguments en gérant les guillemets
+ * - Exécute la commande correspondante
+ * - Gère les erreurs et affiche l'aide si nécessaire
+ * - Sauvegarde l'état à la sortie
+ */
 void handle_command() {
     // Vérifier si le répertoire racine existe
     if (root_directory == NULL) {
